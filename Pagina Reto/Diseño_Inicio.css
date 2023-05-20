@@ -1,0 +1,28 @@
+body{
+    background: url(Imag/Img_Inicio.webp);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+.header_inicio{
+    width: 100%;
+    height: 60px;
+    ;
+}
+.div_header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(148, 33, 148);
+    height: 100%;
+    width: 10%;
+    border: rgb(148, 33, 148) 4px outset;
+}
+.buton{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}

@@ -5,3 +5,42 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
 }
+*{
+    box-sizing: border-box;
+}
+
+.container-nav{
+    display: flex;
+    width: 100%;
+    background-color: black;
+}
+
+nav > div > ul >li >a{
+    color: aliceblue;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+nav > div > ul >li{
+    list-style: none;
+    display: inline-block;
+}
+
+.div-nav{
+    width: 30%;
+    justify-content: start;
+}
+.list-nav{
+    display: flex;
+    justify-content: start;
+    gap: 40px;
+}
+
+.div-nav2{
+    width: 100%
+}
+.list2-nav{
+    display: flex;
+    justify-content:end;
+    gap: 60px;
+    margin-right: 20px;
+}

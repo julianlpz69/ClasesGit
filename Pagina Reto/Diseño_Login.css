@@ -9,7 +9,7 @@ body{
     box-sizing: border-box;
 }
 .container{
-    margin-top: 10%;
+    margin-top: 3%;
     display: flex;
     justify-content: center;
     height: 600px;
@@ -29,7 +29,7 @@ body{
     font-size: 40px;
     line-height: 2rem;
     font-weight: 700;
-    margin-top: 20%;
+    margin-top: 10%;
   }
   
   .form {

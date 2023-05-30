@@ -1,5 +1,6 @@
+
+
 body{
-    background: url(Imag/Img_Inicio.webp);
     background-size: cover;
     background-attachment: fixed;
     font-family: Arial, Helvetica, sans-serif;
@@ -9,38 +10,17 @@ body{
     box-sizing: border-box;
 }
 
-.container-nav{
-    display: flex;
+.encabezado{
     width: 100%;
-    background-color: black;
+    background-color: #0082C3;
+    text-align: center;
 }
 
-nav > div > ul >li >a{
-    color: aliceblue;
+.encabezado_a{
+    color: white;
     text-decoration: none;
-    font-size: 1.2rem;
-}
-nav > div > ul >li{
-    list-style: none;
-    display: inline-block;
 }
 
-.div-nav{
-    width: 30%;
-    justify-content: start;
-}
-.list-nav{
-    display: flex;
-    justify-content: start;
-    gap: 40px;
-}
-
-.div-nav2{
-    width: 100%
-}
-.list2-nav{
-    display: flex;
-    justify-content:end;
-    gap: 60px;
-    margin-right: 20px;
+.logo{
+    width: 10rem;
 }

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pagina Propia</title>
-    <link href="Diseño_Login.css" rel="stylesheet" >
+    <link href="..\Style\Diseño_Login.css" rel="stylesheet" >
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   </head>
   <body>
@@ -14,21 +14,23 @@
         <br>
         <form class="form">
             <div class="input-group">
-                <label for="username">Correo Electronico</label>
-                <input type="text" name="username" id="username" placeholder="">
+                <label for="username" class="text-white">Correo Electronico</label>
+                <input type="text" class="border-2 border-white" name="username" id="username" placeholder="" required>
             </div>
             <div class="input-group">
-                <label for="password">Contraseña</label>
-                <input type="password" name="password" id="password" placeholder="">
-                <div class="forgot">
-                    <a rel="noopener noreferrer" href="#">Recuerdas tu Contraseña?</a>
+                <label for="password" class="text-white">Contraseña</label>
+                <input class="border-2 border-white" type="password" name="password" id="password" placeholder="" required>
+                <div class="forgot mt-4">
+                    <a rel="noopener noreferrer" target="_blank" href="https://th.bing.com/th/id/OIP.Z3AHEJVoRLuobmI0Mr7rlgAAAA?pid=ImgDet&rs=1">No Recuerdas tu Contraseña?</a>
                 </div>
             </div>
-            <a href="./Pagina_Inicio.html" class="sign">Ingresar<a> 
+            <div>
+            <button class="sign">Ingresar</button>
+            </div> 
         </form>
         <div class="social-message">
             <div class="line"></div>
-            <p class="message">Iniciar Secion Con Redes Sociales</p>
+            <p class="message mt-4">Nuestras Redes Sociales</p>
             <div class="line"></div>
         </div>
         <div class="social-icons">

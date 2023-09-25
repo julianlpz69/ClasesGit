@@ -1,5 +1,3 @@
-const navbarOpciones = document.getElementById("navbarOpciones")
-const paginaInicio = document.getElementById("paginaInicio")
 
 
 
@@ -40,18 +38,28 @@ formuRegistrar.addEventListener('submit',async (e) => {
           };
 
 
+          fetch(url, opciones)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`La solicitud no fue exitosa. Código de estado: ${response.status}`);
+            }
+            return response.text(); // Suponiendo que la respuesta es JSON
+          })
+          .then(result => {
+            // Acceder al string result en la respuesta JSON
+            if (result === "Usuario ya tiene Registro"){
+                alert("Ya hay un usuario con ese Nombre y Clave")
+            }
 
-        fetch(url, opciones)
-            .then(respons => {
-                if (!respons.ok) {
-                throw new Error('Error en la petición POST');
-                }
-                return respons;
-            })
-            
-            .then(data => {
-                console.log(data.text());
-            });
+            if (result === "Usuario Registrado Correctamente"){
+                alert("Tu registro se ha realizado correctamente")
+                window.location.replace("../Html/Pagina_Login.html");
+            }
+            console.log("Resultado:", result);
+          })
+          .catch(error => {
+            console.error("Error:", error);
+          });
     }
 
 

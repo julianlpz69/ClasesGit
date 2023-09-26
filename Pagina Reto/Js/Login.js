@@ -42,7 +42,7 @@ formuLogin.addEventListener('submit',async (e) => {
                 document.cookie = `miToken=${result.userToken}`;
                 document.cookie = `miRefreshToken=${result.refreshToken}`
 
-                window.location.replace("../Html/Pagina_Principal.html");
+                window.location.replace("../Html/Pagina_Inicio.html");
                 
             }
 

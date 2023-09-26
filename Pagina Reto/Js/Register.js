@@ -1,8 +1,4 @@
 
-
-
-
-
 // ----------------------------------- Registrar Usuarioo ------------------------------------------------------------------
 
 const formuRegistrar = document.getElementById("formRegistrar");

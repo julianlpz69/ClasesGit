@@ -27,18 +27,3 @@ body {
     color: #000;
 }
 
-
-#ImagenInicio{
-    width: 400px !important;
-    height: 200px !important;
-    border-radius: 100%;
-}
-
-.imagenes{
-    height: 130px;
-}
-
-.col{
-    width: 150px;
-    height: 250px;
-}

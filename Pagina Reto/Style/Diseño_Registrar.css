@@ -1,7 +1,5 @@
 body{
-    background: url(../Imag/sss.jpg);
-    background-size: cover;
-    background-attachment: fixed;
+  background: url(../Imag/fondoInicio.jpg);
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
 }

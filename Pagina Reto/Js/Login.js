@@ -39,9 +39,10 @@ formuLogin.addEventListener('submit',async (e) => {
             .then(result => {
           
             if (result.mensaje === "Usuario Existente"){
-                document.cookie = "miCookie=miValor";
+                document.cookie = `miToken=${result.userToken}`;
+                document.cookie = `miRefreshToken=${result.refreshToken}`
 
-                alert("Esperar")
+                window.location.replace("../Html/Pagina_Principal.html");
                 
             }
 

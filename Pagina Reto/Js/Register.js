@@ -27,9 +27,9 @@ formuRegistrar.addEventListener('submit',async (e) => {
 
         const opciones = {
             method: 'POST',
-            headers: {
+            headers: new Headers( {
               'Content-Type': 'application/json'
-            },
+            }),
             body: l
           };
 

@@ -26,8 +26,24 @@
     </nav>
 
     <h1>PAGINA Proveedoresss</h1>
-      
-    
 
   </body>
+  <script>
+    async function Estado(){
+      let co = localStorage.getItem("token");
+      let resp = await fetch("http://localhost:5223/Farmacia/proveedor/ProvMasVendio",  {
+  method: 'GET',
+  headers: {
+        'Authorization': `Bearer ${co}`,
+      },
+  });
+    let dato = await resp.json();
+      return dato;
+  }
+    
+    window.onload = async function(){
+      console.log(await Estado());
+    }
+    
+  </script>
 </html>

@@ -23,3 +23,7 @@ function saltar(){
         window.location.replace("Pagina_Login.html")
     }
 }
+
+if (getCookieValue(nombreCookie) == "true"){
+    window.location.replace("Pagina_Inicio.html");
+}

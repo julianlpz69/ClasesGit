@@ -1,4 +1,20 @@
-import { getCookieValue } from "../Config/Cookies.js";
+
+import { getCookieValue, PaginaRol } from "../Config/Cookies.js";
+
+
+
+const btnRegresar = document.getElementById("RegresarProveedor");
+
+
+
+btnRegresar.addEventListener("click", e =>{
+
+    PaginaRol()
+})
+
+
+
+
 const URL = "http://localhost:5223/Farmacia/Proveedor/";
 const token = getCookieValue("miToken");
 const config =  

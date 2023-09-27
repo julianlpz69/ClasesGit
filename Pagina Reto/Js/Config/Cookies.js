@@ -11,3 +11,17 @@ export function getCookieValue(cookieName) {
     // Si no se encontró la cookie, devolver null o un valor predeterminado
     return null;
 }
+
+
+export function PaginaRol (){
+
+    var nombreRol = "Rol"
+
+    if(getCookieValue(nombreRol) == "Administrador"){
+        window.location.replace("../Html/Pagina_Inicio_Admin.html");
+    }
+    
+    if(getCookieValue(nombreRol) == "Empleado"){
+        window.location.replace("../Html/Pagina_Inicio.html");
+    }
+}

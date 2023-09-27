@@ -1,8 +1,27 @@
+var nombreCookie = "UserActivo";
 
+// Función para obtener el valor de una cookie por su nombre
+function getCookieValue(cookieName) {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+        // Verificar si la cookie comienza con el nombre deseado
+        if (cookie.indexOf(cookieName + '=') === 0) {
+            // Extraer y devolver el valor de la cookie
+            return cookie.substring(cookieName.length + 1, cookie.length);
+        }
+    }
+    // Si no se encontró la cookie, devolver null o un valor predeterminado
+    return null;
+}
+if(getCookieValue(nombreCookie) == "true"){
+    window.location.replace("../Html/Pagina_Inicio.html");
+}
 
 // ----------------------------------- Login Usuarioo ------------------------------------------------------------------
 
 const formuLogin = document.getElementById("formularioLogin");
+
 
 formuLogin.addEventListener('submit',async (e) => {
     e.preventDefault();
@@ -41,12 +60,14 @@ formuLogin.addEventListener('submit',async (e) => {
             if (result.mensaje === "Usuario Existente"){
                 document.cookie = `miToken=${result.userToken}`;
                 document.cookie = `miRefreshToken=${result.refreshToken}`
+                document.cookie = `UserActivo=${true}`
+                document.cookie = `userName=${result.userName}`
                 window.location.replace("../Html/Pagina_Inicio.html");
                 
             }
 
             if (result.mensaje === "Usuario No Existe"){
-                alert("El usuario que No Existe")
+                alert("El usuario No Existe")
                 
             }
 

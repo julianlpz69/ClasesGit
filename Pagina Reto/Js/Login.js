@@ -1,21 +1,21 @@
-var nombreCookie = "UserActivo";
 
+import { getCookieValue } from "./Config/Cookies.js";
+import { PaginaRol } from "./Config/Cookies.js";
 // Función para obtener el valor de una cookie por su nombre
-function getCookieValue(cookieName) {
-    var cookies = document.cookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i].trim();
-        // Verificar si la cookie comienza con el nombre deseado
-        if (cookie.indexOf(cookieName + '=') === 0) {
-            // Extraer y devolver el valor de la cookie
-            return cookie.substring(cookieName.length + 1, cookie.length);
-        }
-    }
-    // Si no se encontró la cookie, devolver null o un valor predeterminado
-    return null;
+
+var nombreCookie = "UserActivo";
+var nombreRol = "Rol";
+
+
+if(getCookieValue(nombreCookie) == "true" && getCookieValue(nombreRol) == "Administrador"){
+    window.location.replace("../Html/Pagina_Inicio_Admin.html");
 }
-if(getCookieValue(nombreCookie) == "true"){
+
+if(getCookieValue(nombreCookie) == "true" && getCookieValue(nombreRol) == "Empleado"){
     window.location.replace("../Html/Pagina_Inicio.html");
+}
+else{
+    console.log("no tiene rol")
 }
 
 // ----------------------------------- Login Usuarioo ------------------------------------------------------------------
@@ -58,11 +58,16 @@ formuLogin.addEventListener('submit',async (e) => {
         .then(result => {
           
             if (result.mensaje === "Usuario Existente"){
+
+                
+
                 document.cookie = `miToken=${result.userToken}`;
                 document.cookie = `miRefreshToken=${result.refreshToken}`
                 document.cookie = `UserActivo=${true}`
                 document.cookie = `userName=${result.userName}`
-                window.location.replace("../Html/Pagina_Inicio.html");
+                document.cookie = `Rol=${result.userRoles}`
+
+                PaginaRol()
                 
             }
 

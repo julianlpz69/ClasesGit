@@ -1,7 +1,4 @@
-var nombreCookie = "UserActivo";
-
-// Función para obtener el valor de una cookie por su nombre
-function getCookieValue(cookieName) {
+export function getCookieValue(cookieName) {
     var cookies = document.cookie.split(';');
     for (var i = 0; i < cookies.length; i++) {
         var cookie = cookies[i].trim();
@@ -15,15 +12,16 @@ function getCookieValue(cookieName) {
     return null;
 }
 
-function saltar(){
-    if (getCookieValue(nombreCookie) == "true" ){
-        window.location.replace("Pagina_Inicio.html");
-    }
-    else{
-        window.location.replace("Pagina_Login.html")
-    }
-}
 
-if (getCookieValue(nombreCookie) == "true"){
-    window.location.replace("Pagina_Inicio.html");
+export function PaginaRol (){
+
+    var nombreRol = "Rol"
+
+    if(getCookieValue(nombreRol) == "Administrador"){
+        window.location.replace("../Html/Pagina_Inicio_Admin.html");
+    }
+    
+    if(getCookieValue(nombreRol) == "Empleado"){
+        window.location.replace("../Html/Pagina_Inicio.html");
+    }
 }

@@ -24,6 +24,7 @@ function getCookieValue(cookieName) {
   // Si no se encontró la cookie, devolver null o un valor predeterminado
   return null;
 }
+import { getCookieValue } from "./Config/Cookies.js";
 
 const nombreUser = document.getElementById("nombreUser");
 

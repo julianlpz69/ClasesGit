@@ -1,19 +1,9 @@
+import { PaginaRol } from "./Config/Cookies.js";
+
 var nombreCookie = "userName";
 
 // Función para obtener el valor de una cookie por su nombre
-function getCookieValue(cookieName) {
-    var cookies = document.cookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i].trim();
-        // Verificar si la cookie comienza con el nombre deseado
-        if (cookie.indexOf(cookieName + '=') === 0) {
-            // Extraer y devolver el valor de la cookie
-            return cookie.substring(cookieName.length + 1, cookie.length);
-        }
-    }
-    // Si no se encontró la cookie, devolver null o un valor predeterminado
-    return null;
-}
+import { getCookieValue } from "./Config/Cookies.js";
 
 const nombreUser = document.getElementById("nombreUser");
 

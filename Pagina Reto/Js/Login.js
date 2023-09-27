@@ -55,14 +55,13 @@ formuLogin.addEventListener('submit',async (e) => {
             }
             return response.json(); 
             })
-            .then(result => {
+        .then(result => {
           
             if (result.mensaje === "Usuario Existente"){
                 document.cookie = `miToken=${result.userToken}`;
                 document.cookie = `miRefreshToken=${result.refreshToken}`
                 document.cookie = `UserActivo=${true}`
                 document.cookie = `userName=${result.userName}`
-
                 window.location.replace("../Html/Pagina_Inicio.html");
                 
             }
@@ -77,7 +76,7 @@ formuLogin.addEventListener('submit',async (e) => {
             }
             console.log("Resultado:", result);
             })
-            .catch(error => {
+        .catch(error => {
             console.error("Error:", error);
             });
     

@@ -19,7 +19,7 @@
           <ul class="navbar-nav ms-auto  mb-2 mb-lg-0 mx-5">
             
             <li class="nav-item">
-              <a class="nav-link fs-4 fw-bold me-3" href="Pagina_Inicio.html">Regresar</a>
+              <a class="nav-link fs-4 fw-bold me-3" href="Pagina_Inicio_Admin.html">Regresar</a>
             </li>
           </ul>
         </div>
@@ -29,6 +29,18 @@
     <div class="container">
     <h1 class  ="mt-2 fs-3">Gestión de Empleados</h1>
     <form class="row g-3 needs-validation mt-4" id="agregar-empleado">
+      <div class="col-md-4">
+        <label for="email" class="form-label">Tipo de Documento</label>
+        <select class="form-select" id="tipoDoc" aria-label="Default select example">
+          <option selected></option>
+          <option value="1">Cédula Ciudadanía</option>
+          <option value="2">Tarjeta Identidad</option>
+          <option value="3">Pasaporte</option>
+          <option value="4">Cédula Extranjería</option>
+          <option value="5">PPT</option>
+        </select>
+      
+      </div>
       <div class="col-md-4">
         <label for="id" class="form-label">Numero de identificacion</label>
         <input type="number" class="form-control" id="id" required>
@@ -45,13 +57,14 @@
      
     
      
-      <div class="col-md-6">
+      <div class="col-md-8">
         <label for="email" class="form-label">Cargo del empleado</label>
         <select class="form-select" id="cargoEmpleado" aria-label="Default select example">
           <option selected>Seleccione un cargo</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option value="1">Gerente</option>
+          <option value="2">Enfermero</option>
+          <option value="3">Cajero</option>
+          <option value="4">Auxiliar</option>
         </select>
     
       </div>
@@ -81,33 +94,33 @@
         required>
     
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
       <label for="carrera" class="form-label">Carrera </label>
       <input type="text" class="form-control" id="carrera" title="Por favor ingrese solo números"
         required>
     
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
       <label for="complemento" class="form-label">Complemento </label>
       <input type="text" class="form-control" id="complemento" title="Por favor ingrese solo números"
-        required>
+        >
     
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
       <label for="tipoVia" class="form-label">Tipo Via </label>
       <input type="text" class="form-control" id="tipoVia" title="Por favor ingrese solo números"
-        required>
+        >
     
     </div>
       <div class=" col-1 mx-auto">
-        <button class="btn btn-outline-primary fw-bolder " type="submit">Agregar</button>
+        <button class="btn btn-outline-primary fw-bolder " type="submit" id="agregar">Agregar</button>
       </div>
     </form>
     
     <div class="container mt5 pb-5 pt-5">
       <div class="row">
         <div class="offset-md-3 col-md-6">
-          <input type="text" class="form-control" id="buscar" placeholder="Buscar..." oninput="buscarempleado()">
+          <input type="text" class="form-control" id="buscar" placeholder="Buscar..." oninput="buscarEmpleado()">
         </div>
       </div>
     
@@ -120,16 +133,14 @@
                 align-middle">
           <thead>
             <th>id</th>
+            <th>Cargo</th>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Placas</th>
-            <th>Tipo</th>
-            <th>Email</th>
             <th>Telefono</th>
             <th></th>
             <th></th>
           </thead>
-          <tbody class="table-group-divider" id="tabla-empleados">
+          <tbody class="table-group-divider" id="tabla-Empleados">
     
           </tbody>
         </table>
@@ -141,6 +152,7 @@
       
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <script src="../Js/Empleados.js"></script>
+    <script src="../Js/Empleados/Empleados.js" type="module"></script>
+    <script type="module" src="../Js/Empleados.js"></script>
   </body>
 </html>

@@ -12,12 +12,26 @@ export async function getEmpleados() {
 
 export async function agregarEmpleado(datosEmpl) {
   try {
-    await fetch(`${URL}/Empleados`, {
+    await fetch(`${URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(datosEmpl),
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function agregarDireccion(datosDir) {
+  try {
+    await fetch(`http://localhost:5223/Farmacia/Direccion`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(datosDir),
     });
   } catch (error) {
     console.error(error);

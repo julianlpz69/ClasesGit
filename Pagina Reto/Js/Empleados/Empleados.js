@@ -8,7 +8,8 @@ import {
   
 } from "./empleadoRequest.js";
 
-import { getCookieValue } from "./Config/Cookies.js";
+var nombreCookie = "userName";
+import { getCookieValue } from "../Config/Cookies.js";
 
 const nombreUser = document.getElementById("nombreUser");
 

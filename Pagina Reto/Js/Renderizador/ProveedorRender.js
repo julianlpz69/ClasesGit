@@ -1,5 +1,51 @@
-import * as provReq from "../Peticiones/ProveedorRequest.js";
+import * as provReq from "../Empleados/ProveedorRequest.js";
+import { getCookieValue, PaginaRol,RefrescarToken } from "../Config/Cookies.js";
 
+RefrescarToken()
+
+const nombreUser = document.getElementById("nombreUser");
+
+nombreUser.textContent = getCookieValue("userName");
+
+const btnRegresar2 = document.getElementById("ProvvedorRegresar");
+
+const GuardarModal = document.getElementById("GuardarProv");
+
+
+btnRegresar2.addEventListener("click", e =>{
+
+    PaginaRol()
+})
+GuardarModal.addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    try{
+        let datos = ev.target;
+        let nombre = datos.nombre.value;
+        let contacto = datos.telefono.value;
+        let carrera = datos.carrera.value;
+        let calle = datos.calle.value;
+        let numero = datos.numero.value;
+        let complemento = datos.complemento.value;
+        let ciudad = datos.ciudad.value;
+        let body = {
+            NombreProveedor:nombre,
+            ContactoProveedor:contacto,
+            Direccion:{
+                IdCiudadFk:ciudad,
+                Carrera:carrera,
+                Calle:calle,
+                Numero:numero,
+                complemento:complemento
+            }
+        }
+        await provReq.GuardarProveedor(body);
+        alert("se ha guardado Correctamente")
+    }catch(err){
+        alert(err);
+    }
+    
+
+})
 async function CrearTablaProveedores(){
     const tablageneral = document.getElementById("tabla-proveedor");
     let data = await provReq.TodosLosProveedores();
@@ -18,7 +64,7 @@ async function CrearTablaProveedores(){
 
     });
 }
-CrearTablaProveedores();
+
 export function Eliminar(ev){
     let id = parseInt( ev.target.getAttribute("id").match(/[0-9]/g).join(""));
     provReq.EliminarProveedor(id);
@@ -26,3 +72,43 @@ export function Eliminar(ev){
     let tabla = fila.parentNode;
     tabla.removeChild(fila);
 }
+function ASD (){
+    RefrescarToken()
+
+    setTimeout(() => {
+        console.log("Realizando el segundo bloque de código después de un retraso");
+        const url = 'http://localhost:5223/Farmacia/medicamento';
+
+const opciones = {
+    method: 'GET',
+    headers: {
+        'Authorization': `Bearer ${getCookieValue("miToken")}`,
+        'Content-Type': 'application/json'
+    }
+    };
+
+
+    fetch(url, opciones)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`La solicitud no fue exitosa. Código de estado: ${response.status}`);
+        }
+        return response.json(); 
+        })
+    .then(result => {
+      
+        console.log("asdadas")
+        
+
+        })
+
+    .catch(error => {
+        console.error("Error:", error);
+        });
+      }, 500);
+
+
+}
+
+CrearTablaProveedores();
+ASD()

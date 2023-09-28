@@ -24,16 +24,41 @@
 
                 <div class="form-group col-md-6">
                     <label for="Nombre">Nombre del Proveedor</label>
-                    <input type="text" class="form-control">
+                    <input type="text" name="nombre" class="form-control">
                 </div>  
                 <div class="form-group col-md-6">
-                  <label for="Nombre">Telefono</label>
-                  <input type="text" class="form-control">
+                  <label for="telefono">Telefono</label>
+                  <input type="text" name="telefono" class="form-control">
                 </div> 
-              <div class="form-group col-md-6">
-                <label for="Nombre">Carrera</label>
-                <input type="text" class="form-control">
+                <div class="form-group col-md-4">
+                  <label for="pais">Pais</label>
+                  <select name="pais" id="pais" class="form-control"></select>
+                </div> 
+                <div class="form-group col-md-4">
+                  <label for="departamento">Departamento</label>
+                  <select name="departamento" id="departamento" class="form-control"></select>
+                </div> 
+                <div class="form-group col-md-4">
+                  <label for="ciudad">Ciudad</label>
+                  <select name="ciudad" id="ciudad" class="form-control"></select>
+                </div> 
+              <div class="form-group col-md-4">
+                <label for="carrera">Carrera</label>
+                <input type="text" name="carrera" class="form-control">
               </div> 
+              <div class="form-group col-md-4">
+                <label for="calle">Calle</label>
+                <input type="text" name="calle" class="form-control">
+              </div> 
+              <div class="form-group col-md-4">
+                <label for="numero">Numero</label>
+                <input type="text" name="numero" class="form-control">
+              </div> 
+              <div class="form-group col-md-12">
+                <label for="complemento">Complemento</label>
+                <textarea class="form-control" name="complemento"></textarea>
+              </div> 
+              <input type="submit" name="guardar" value="Guardar">
             </form>
           </div>
           
@@ -62,7 +87,7 @@
     </nav>
     <main class="container">
       <h1>PAGINA Proveedoresss</h1>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#miModal">Abrir Modal</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#miModal">Guardar Proveedor</button>
     <table id="tabla-proveedor" class="table table-bordered">
       <thead>
         <th>Nombre</th>
@@ -79,5 +104,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="../Js/Renderizador/ProveedorRender.js" type="module"></script>   
+    <script src="../Js/Renderizador/ProveedorRender.js" type="module"></script> 
+    <script src="../Js/Renderizador/DireccionRender.js" type="module"></script>  
 </html>

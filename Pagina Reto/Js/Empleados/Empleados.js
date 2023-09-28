@@ -8,11 +8,13 @@ import {
   
 } from "./empleadoRequest.js";
 
-import { getCookieValue } from "./Config/Cookies.js";
+import { getCookieValue, RefrescarToken } from "./Config/Cookies.js";
+
+RefrescarToken()
 
 const nombreUser = document.getElementById("nombreUser");
 
-nombreUser.textContent = getCookieValue(nombreCookie);
+nombreUser.textContent = getCookieValue("userName");
 
 const formEmpleados = document.getElementById("agregar-empleado"),
   tablaEmpleados = document.getElementById("tabla-Empleados");

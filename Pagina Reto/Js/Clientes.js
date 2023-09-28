@@ -3,7 +3,7 @@
 var nombreCookie = "userName";
 
 // Función para obtener el valor de una cookie por su nombre
-import { getCookieValue , PaginaRol} from "./Config/Cookies.js";
+import { getCookieValue , PaginaRol, RefrescarToken} from "./Config/Cookies.js";
 
 const nombreUser = document.getElementById("nombreUser");
 
@@ -17,3 +17,5 @@ btnRegresar.addEventListener("click", e =>{
 
     PaginaRol()
 })
+
+RefrescarToken()

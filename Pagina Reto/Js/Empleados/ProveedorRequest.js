@@ -3,11 +3,11 @@ import { getCookieValue, PaginaRol } from "../Config/Cookies.js";
 
 
 
-const btnRegresar = document.getElementById("RegresarProveedor");
+const btnRegresar2 = document.getElementById("ProvvedorRegresar");
 
 
 
-btnRegresar.addEventListener("click", e =>{
+btnRegresar2.addEventListener("click", e =>{
 
     PaginaRol()
 })

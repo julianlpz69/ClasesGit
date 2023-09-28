@@ -6,6 +6,9 @@ body{
 * {
     box-sizing: border-box;
 }
+input::-webkit-inner-spin-button{
+  display: none;
+}
 .page-bg {
   background: url('../Imag/fondoInicio.jpg');
   -webkit-filter: blur(3px);

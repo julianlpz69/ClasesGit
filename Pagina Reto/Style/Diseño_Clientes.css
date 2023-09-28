@@ -2,6 +2,10 @@
 *{
   font-family: 'Montserrat', sans-serif;
 }
+
+input::-webkit-inner-spin-button{
+    display: none;
+  }
 body {
     background: #e6f7ff;
 }

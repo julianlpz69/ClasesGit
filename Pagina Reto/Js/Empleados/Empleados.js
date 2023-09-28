@@ -9,7 +9,7 @@ import {
   getCiudades,
 } from "./empleadoRequest.js";
 
-import { getCookieValue, RefrescarToken } from "./Config/Cookies.js";
+import { getCookieValue, RefrescarToken } from "../Config/Cookies.js";
 
 RefrescarToken()
 
@@ -114,7 +114,41 @@ async function cargarDeptos(paisId) {
     cargarCiudades
   );
 }
+// function mostarConsulta(ConsultaId) {
+//   const Consultas = [
+//     "inicio",
+//     "clientes",
+//     "servicios",
+//     "compra",
+//     "fidelizacion",
+//   ];
+//   Consultas.forEach((id) => {
+//     const Consulta = document.getElementById(id);
+//     if (id === ConsultaId) {
+//       Consulta.style.display = "block";
+//     } else {
+//       Consulta.style.display = "none";
+//     }
+//   });
+// }
 
+// document
+//   .querySelector("a[href='#Inicio']")
+//   .addEventListener("click", () => mostarConsulta("inicio"));
+// document
+//   .querySelector("a[href='#Clientes']")
+//   .addEventListener("click", () => mostarConsulta("clientes"));
+// document
+//   .querySelector("a[href='#Servicios']")
+//   .addEventListener("click", () => mostarConsulta("servicios"));
+// document
+//   .querySelector("a[href='#Compra']")
+//   .addEventListener("click", () => mostarConsulta("compra"));
+// document
+//   .querySelector("a[href='#Fidelizacion']")
+//   .addEventListener("click", () => mostarSeccion("fidelizacion"));
+
+// mostarSeccion("inicio");
 async function cargarCiudades(deptoId) {
   const Ciudades = await getCiudades(deptoId);
   cargarSelect(selectCiudad, Ciudades.ciudades, "id", "nombre");

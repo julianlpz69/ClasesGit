@@ -1,4 +1,29 @@
-import * as provReq from "../Peticiones/ProveedorRequest.js";
+
+import { getCookieValue, PaginaRol,RefrescarToken } from "../Config/Cookies.js";
+
+import * as provReq from "../Empleados/ProveedorRequest.js";
+
+RefrescarToken()
+
+const nombreUser = document.getElementById("nombreUser");
+
+nombreUser.textContent = getCookieValue("userName");
+
+const btnRegresar2 = document.getElementById("ProvvedorRegresar");
+
+
+
+btnRegresar2.addEventListener("click", e =>{
+ 
+
+    PaginaRol()
+})
+
+
+
+
+
+
 
 async function CrearTablaProveedores(){
     const tablageneral = document.getElementById("tabla-proveedor");

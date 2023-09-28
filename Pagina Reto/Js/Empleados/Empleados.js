@@ -122,7 +122,7 @@ async function cargarCiudades(deptoId) {
 
 cargarPaises();
 
-document.addEventListener("click",async (e) => {
+document.addEventListener("click", async (e) => {
   if (e.target.classList.contains("btn-eliminar")) {
     const empleadoId = e.target.dataset.id;
     console.log(empleadoId);
@@ -134,24 +134,32 @@ document.addEventListener("click",async (e) => {
 document.addEventListener("click", async (e) => {
   if (e.target.classList.contains("btn-editar")) {
     const empleadoId = e.target.dataset.id;
-    document.getElementById("guardarCambios").setAttribute("data-id", empleadoId);
+    document
+      .getElementById("guardarCambios")
+      .setAttribute("data-id", empleadoId);
     try {
       const response = await fetch(`${URL}/Empleado/${empleadoId}`);
       const empleado = await response.json();
 
       const formModificarempleado = document.getElementById("editar-empleado");
       formModificarempleado.setAttribute("data-id", empleadoId);
-      document.getElementById("calleEdit").value = empleado.direccion.calle,
-        document.getElementById("numeroDirEdit").value = empleado.direccion.numero,
-        document.getElementById("carreraEdit").value = empleado.direccion.carrera,
-        document.getElementById("tipoViaEdit").value = empleado.direccion.tipoVia,
-        document.getElementById("ciudadEdit").value = empleado.direccion.idCiudadFk,
-        document.getElementById("nombreEdit").value = empleado.nombre,
-        document.getElementById("apellidoEdit").value = empleado.apellido,
-        document.getElementById("idEdit").value  = empleado.cedula,
-        document.getElementById("telefonoEdit").value = empleado.telefono,
-        document.getElementById("tipoDocEdit").value = empleado.idTipoDocumentoFk,
-        document.getElementById("cargoEmpleadoEdit").value = empleado.idCargoEmpleadoFk;
+      (document.getElementById("calleEdit").value = empleado.direccion.calle),
+        (document.getElementById("numeroDirEdit").value =
+          empleado.direccion.numero),
+        (document.getElementById("carreraEdit").value =
+          empleado.direccion.carrera),
+        (document.getElementById("tipoViaEdit").value =
+          empleado.direccion.tipoVia),
+        (document.getElementById("ciudadEdit").value =
+          empleado.direccion.idCiudadFk),
+        (document.getElementById("nombreEdit").value = empleado.nombre),
+        (document.getElementById("apellidoEdit").value = empleado.apellido),
+        (document.getElementById("idEdit").value = empleado.cedula),
+        (document.getElementById("telefonoEdit").value = empleado.telefono),
+        (document.getElementById("tipoDocEdit").value =
+          empleado.idTipoDocumentoFk),
+        (document.getElementById("cargoEmpleadoEdit").value =
+          empleado.idCargoEmpleadoFk);
     } catch (error) {
       console.error(error);
     }
@@ -167,24 +175,15 @@ document
     const apellido = document.getElementById("apellidoEdit").value;
     const cedula = document.getElementById("idEdit").value;
     const telefono = document.getElementById("telefonoEdit").value;
-    const direccionTipoVia = document.getElementById(
-      "tipoViaEdit"
-    ).value;
+    const direccionTipoVia = document.getElementById("tipoViaEdit").value;
     const direccionCalle = document.getElementById("calleEdit").value;
-    const direccionCarrera = document.getElementById(
-      "carreraEdit"
-    ).value;
-    const direccionNumero = document.getElementById(
-      "numeroDirEdit"
-    ).value;
-    const direccionIdCiudadFk = document.getElementById(
-      "ciudadEdit"
-    ).value;
+    const direccionCarrera = document.getElementById("carreraEdit").value;
+    const direccionNumero = document.getElementById("numeroDirEdit").value;
+    const direccionIdCiudadFk = document.getElementById("ciudadEdit").value;
     const idCargoEmpleadoFk =
       document.getElementById("cargoEmpleadoEdit").value;
-    const idTipoDocumentoFK =
-      document.getElementById("tipoDocEdit").value;
-console.log(idCargoEmpleadoFk);
+    const idTipoDocumentoFK = document.getElementById("tipoDocEdit").value;
+    console.log(idCargoEmpleadoFk);
     const empleadoDtoActualizado = {
       id: empleadoID,
       nombre: nombre,
@@ -203,7 +202,7 @@ console.log(idCargoEmpleadoFk);
     };
     console.log(empleadoDtoActualizado);
     await modificarEmpleado(empleadoDtoActualizado, empleadoID);
-   window.location.reload();
+    window.location.reload();
   });
 
 function buscarEmpleado() {
@@ -228,3 +227,21 @@ function buscarEmpleado() {
 }
 
 document.getElementById("buscar").addEventListener("keyup", buscarEmpleado);
+
+const Filtros = document.getElementById("filtros");
+Filtros.style.display = "none";
+
+document.getElementById("btn-buscar").addEventListener("click", () => {
+  if (document.getElementById("flecha").classList.contains("fa-caret-down")) {
+    Filtros.style.display = "block";
+    document
+      .getElementById("flecha")
+      .classList.replace("fa-caret-down", "fa-caret-up");
+  } else {
+    Filtros.style.display = "none";
+    document
+      .getElementById("flecha")
+      .classList.replace("fa-caret-up", "fa-caret-down");
+  }
+
+});

@@ -1,7 +1,11 @@
 
-import { getCookieValue, PaginaRol } from "../Config/Cookies.js";
+import { getCookieValue, PaginaRol,RefrescarToken } from "../Config/Cookies.js";
 
+RefrescarToken()
 
+const nombreUser = document.getElementById("nombreUser");
+
+nombreUser.textContent = getCookieValue("userName");
 
 const btnRegresar2 = document.getElementById("ProvvedorRegresar");
 

@@ -59,13 +59,16 @@ formuLogin.addEventListener('submit',async (e) => {
           
             if (result.mensaje === "Usuario Existente"){
 
-                
+                var fechaActual = new Date();
+
+                var fechaFutura = new Date(fechaActual.getTime() + 1 * 60 * 1000);
 
                 document.cookie = `miToken=${result.userToken}`;
                 document.cookie = `miRefreshToken=${result.refreshToken}`
                 document.cookie = `UserActivo=${true}`
                 document.cookie = `userName=${result.userName}`
                 document.cookie = `Rol=${result.userRoles}`
+                document.cookie = `ExpireToken=${fechaFutura}`
 
                 PaginaRol()
                 

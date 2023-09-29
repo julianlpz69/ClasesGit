@@ -75,29 +75,47 @@
           required>
       
       </div>
-      <div class="col-md-2">
-        <label for="ciudad" class="form-label">ciudad </label>
-        <input type="text" class="form-control" id="ciudad" title="Por favor ingrese solo números"
-          required>
+      <div class="col-md-6">
+        <label for="ciudad" class="form-label">Pais </label>
+        <select class="form-select" id="pais" aria-label="Default select example">
+          <option selected>Seleccione un pais</option>
+
+        </select>
     
       </div>
+      <div class="col-md-3">
+        <label for="ciudad" class="form-label">Departamento </label>
+        <select class="form-select" id="departamento" aria-label="Default select example">
+          <option selected>Seleccione un Departamento</option>
+
+        </select>
+      
+      </div>
+      <div class="col-md-3">
+        <label for="ciudad" class="form-label">ciudad </label>
+        <select class="form-select" id="ciudad" aria-label="Default select example">
+          <option selected>Seleccione una ciudad</option>
+
+        </select>
+      
+      </div>
     
-    <div class="col-md-2">
+    <div class="col-md-3">
       <label for="calle" class="form-label">Calle </label>
       <input type="text" class="form-control" id="calle" title="Por favor ingrese solo números"
         required>
     
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
       <label for="numeroDir" class="form-label">Numero</label>
-      <input type="number" class="form-control" id="numeroDir" title="Por favor ingrese solo números"
+      <input type="text" class="form-control" id="numeroDir" title="Por favor ingrese solo números"
         required>
     
     </div>
     <div class="col-md-4">
       <label for="carrera" class="form-label">Carrera </label>
       <input type="text" class="form-control" id="carrera" title="Por favor ingrese solo números"
-        required>
+        >
     
     </div>
     <div class="col-md-4">
@@ -120,7 +138,7 @@
     <div class="container mt5 pb-5 pt-5">
       <div class="row">
         <div class="offset-md-3 col-md-6">
-          <input type="text" class="form-control" id="buscar" placeholder="Buscar..." oninput="buscarEmpleado()">
+          <input type="text" class="form-control" id="buscar" placeholder="Buscar..." >
         </div>
       </div>
     
@@ -149,10 +167,123 @@
     </div>
     
     </div>
-      
+   
+ 
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3 needs-validation mt-4" id="editar-empleado">
+                  <div class="col-md-4">
+                    <label for="email" class="form-label">Tipo de Documento</label>
+                    <select class="form-select" id="tipoDocEdit" aria-label="Default select example">
+                      <option selected></option>
+                      <option value="1">Cédula Ciudadanía</option>
+                      <option value="2">Tarjeta Identidad</option>
+                      <option value="3">Pasaporte</option>
+                      <option value="4">Cédula Extranjería</option>
+                      <option value="5">PPT</option>
+                    </select>
+                
+                  </div>
+                  <div class="col-md-4">
+                    <label for="id" class="form-label">Numero de identificacion</label>
+                    <input type="number" class="form-control" id="idEdit" required>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombreEdit" title="Por favor ingrese solo letras" required>
+                
+                  </div>
+                  <div class="col-md-4">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellidoEdit" title="Por favor ingrese solo letras" required>
+                  </div>
+                
+                
+                
+                  <div class="col-md-8">
+                    <label for="email" class="form-label">Cargo del empleado</label>
+                    <select class="form-select" id="cargoEmpleadoEdit" aria-label="Default select example">
+                      <option selected>Seleccione un cargo</option>
+                      <option value=1>Gerente</option>
+                      <option value=2>Enfermero</option>
+                      <option value=3>Cajero</option>
+                      <option value=4>Auxiliar</option>
+                    </select>
+                
+                  </div>
+                
+                  <div class="col-md-6">
+                    <label for="telefono" class="form-label">Telefono </label>
+                    <input type="tel" class="form-control" id="telefonoEdit" title="Por favor ingrese solo números" required>
+                
+                  </div>
+                  <div class="col-md-6">
+                    <label for="ciudad" class="form-label">Pais </label>
+                    <select class="form-select" id="paisEdit" aria-label="Default select example">
+                      <option selected>Seleccione un pais</option>
+                
+                    </select>
+                
+                  </div>
+                  <div class="col-md-3">
+                    <label for="ciudad" class="form-label">Depto </label>
+                    <select class="form-select" id="departamentoEdit" aria-label="Default select example">
+                      <option selected>Seleccione un Departamento</option>
+                
+                    </select>
+                
+                  </div>
+                  <div class="col-md-3">
+                    <label for="ciudad" class="form-label">ciudad </label>
+                    <select class="form-select" id="ciudadEdit" aria-label="Default select example">
+                      <option selected>Seleccione una ciudad</option>
+                
+                    </select>
+                
+                  </div>
+                
+                  <div class="col-md-3">
+                    <label for="calle" class="form-label">Calle </label>
+                    <input type="text" class="form-control" id="calleEdit" title="Por favor ingrese solo números" required>
+                
+                  </div>
+                  <div class="col-md-3">
+                    <label for="numeroDir" class="form-label">Numero</label>
+                    <input type="text" class="form-control" id="numeroDirEdit" title="Por favor ingrese solo números" required>
+                
+                  </div>
+                  <div class="col-md-4">
+                    <label for="carrera" class="form-label">Carrera </label>
+                    <input type="text" class="form-control" id="carreraEdit" title="Por favor ingrese solo números">
+                
+                  </div>
+                  <div class="col-md-4">
+                    <label for="complemento" class="form-label">Complemento </label>
+                    <input type="text" class="form-control" id="complementoEdit" title="Por favor ingrese solo números">
+                
+                  </div>
+                  <div class="col-md-4">
+                    <label for="tipoVia" class="form-label">Tipo Via </label>
+                    <input type="text" class="form-control" id="tipoViaEdit" title="Por favor ingrese solo números">
+                
+                  </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" id="guardarCambios">Guardar Cambios</button>
+            </div>
+          </div>
+        </div>
+      </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script src="../Js/Empleados/Empleados.js" type="module"></script>
-    <script type="module" src="../Js/Empleados.js"></script>
   </body>
 </html>

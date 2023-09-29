@@ -7,12 +7,15 @@ import {
   getDeptos,
   getPaises,
   getCiudades,
-  getEmpleadosById
+  getVentasEmpleadoById,
+  getEmpleadosMas5Ventas,
+  getEmpleadosMenos5Ventas2023,
+  getEmpleados0Ventas2023,
 } from "./empleadoRequest.js";
 
 import { getCookieValue, RefrescarToken } from "../Config/Cookies.js";
 
-RefrescarToken()
+RefrescarToken();
 
 const nombreUser = document.getElementById("nombreUser");
 
@@ -29,6 +32,7 @@ formEmpleados.addEventListener("submit", async (event) => {
     DireccionCarrera: document.getElementById("carrera").value,
     DireccionTipoVia: document.getElementById("tipoVia").value,
     DireccionIdCiudadFk: document.getElementById("ciudad").value,
+    DireccionComplemento: document.getElementById("complemento").value,
     EmpleadoNombre: document.getElementById("nombre").value,
     EmpleadoApellido: document.getElementById("apellido").value,
     EmpleadoCedula: document.getElementById("id").value,
@@ -54,8 +58,8 @@ function mostrarEmpleados(EmpleadosAMostrar, tablaEmpleados) {
         <td>${Empleado.nombre}</td>
         <td>${Empleado.apellido}</td>
         <td>${Empleado.telefono}</td>
-        <td><button class="btn btn-danger btn-eliminar" data-id = "${Empleado.id}">Eliminar</button></td>
-        <td><button class="btn btn-warning btn-editar" data-id ="${Empleado.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button></td>
+        <td><button class="btn btn-danger btn-eliminar"  data-id = "${Empleado.id}"><i class="fa-solid fa-trash btn-eliminar" data-id = "${Empleado.id}"></i></button></td>
+        <td><button class="btn btn-warning btn-editar" data-id ="${Empleado.id}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></button></td>
         `;
     tablaEmpleados.appendChild(nuevafila);
   });
@@ -74,6 +78,11 @@ async function cargarSelect(
   onChangeCallback
 ) {
   try {
+    selectElement.innerHTML = "";
+    let opcionDefecto = `
+        <option >Seleccione una Opcion</option>
+      `;
+    selectElement.innerHTML += opcionDefecto;
     data.forEach((item) => {
       let option = `
         <option value="${item[idField]}" data-id="${item[idField]}">${item[nameField]}</option>
@@ -279,17 +288,84 @@ document.getElementById("btn-buscar").addEventListener("click", () => {
       .getElementById("flecha")
       .classList.replace("fa-caret-up", "fa-caret-down");
   }
-
 });
 
-const tablaVentas = document.getElementById("tablaVentas"); 
+const tablaVentas = document.getElementById("tablaVentas");
 
-document.getElementById("ventas-por-empleado").addEventListener("click", async () => {
-  const empleados = await getEmpleados();
+document
+  .getElementById("ventas-por-empleado")
+  .addEventListener("click", async () => {
+    const empleados = await getEmpleados();
+    empleados.forEach(async (empleado) => {
+      const empl = await getVentasEmpleadoById(empleado.id);
+
+      tablaVentas.innerHTML = "";
+      const nuevafila = document.createElement("tr");
+      nuevafila.innerHTML = `
+        <td>${empl.id}</td>
+        <td>${empl.cargoEmpleado.nombreCargo}</td>
+        <td>${empl.nombre}</td>
+        <td>${empl.apellido}</td>
+        <td>${empl.cantidadVentas}</td>
+        `;
+      tablaVentas.appendChild(nuevafila);
+    });
+  });
+const empleadosMas5 = document.getElementById("consulta2");
+async function consultar(metodo) {
+  if (metodo === getEmpleados0Ventas2023())
+  {
+  const empleados = await metodo;
+     empleados.forEach((empleado) => {
+       empleadosMas5.innerHTML = "";
+       let div = `
+            <div class="card border border-0 shadow-lg p-3 mb-5  rounded col-6 mx-auto mt-3" style="width: 18rem;" id="${empleado.id}">
+              <img src="../Imag/farmaceutico.png" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title">${empleado.nombre}  ${empleado.apellido}</h5>
+               <p class="card-text">xxxxxxxxxxxx</p>
+            </div>
+          `;
+       empleadosMas5.innerHTML += div;
+     });
+  }
+  const empleados = await metodo;
+  
   empleados.forEach((empleado) => {
-    getEmpleadosById(empleado.id).then((empleado) => {
-      
-    })
-  })
-  mostrarEmpleados(empleados, tablaVentas);
- });
+    empleadosMas5.innerHTML = "";
+    let div = `
+            <div class="card border border-0 shadow-lg p-3 mb-5  rounded col-6 mx-auto mt-3" style="width: 18rem;" id="${empleado.id}">
+              <img src="../Imag/farmaceutico.png" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title">${empleado.nombre}  ${empleado.apellido}</h5>
+               <p class="card-text">${empleado.cantidadVentas}</p>
+            </div>
+          `;
+    empleadosMas5.innerHTML += div;
+  });
+}
+document
+  .getElementById("empleados-mas-de-5-ventas")
+  .addEventListener("click", () => {
+    consultar(getEmpleadosMas5Ventas());
+  });
+
+document
+  .getElementById("empleados-mas-de-5-ventas")
+  .addEventListener("click", () => {
+    consultar(getEmpleadosMas5Ventas());
+  });
+
+document
+  .getElementById("empleados-menos-de-5-ventas")
+  .addEventListener("click", () => {
+    consultar(getEmpleadosMenos5Ventas2023());
+  });
+
+document
+  .getElementById("empleados-sin-ventas")
+  .addEventListener("click", async () => {
+    const empleado = getEmpleados0Ventas2023()
+    console.log(await empleado);
+    consultar(empleado);
+  });

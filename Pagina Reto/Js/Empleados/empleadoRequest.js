@@ -16,9 +16,55 @@ export async function getEmpleados() {
   }
 }
 
+export async function getEmpleadosMas5Ventas() {
+  try {
+    const response = await fetch(`${URL}/Empleado/Ventas/mas-de-5`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${getCookieValue("miToken")}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const Empleados = await response.json();
+    return Empleados;
+  } catch (error) {
+    console.error(error);
+  }
+}
+export async function getEmpleadosMenos5Ventas2023() {
+  try {
+    const response = await fetch(`${URL}/Empleado/Ventas/2023/menos-de-5`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${getCookieValue("miToken")}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const Empleados = await response.json();
+    return Empleados;
+  } catch (error) {
+    console.error(error);
+  }
+}
+export async function getEmpleados0Ventas2023() {
+  try {
+    const response = await fetch(`${URL}/Empleado/Ventas/2023/Ninguna`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${getCookieValue("miToken")}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const Empleados = await response.json();
+    return Empleados;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function getVentasEmpleadoById(id) {
   try {
-    const response = await fetch(`${URL}/Empleado/${id}`, {
+    const response = await fetch(`${URL}/Empleado/ventas-por-empleado/${id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${getCookieValue("miToken")}`,

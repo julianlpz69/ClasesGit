@@ -15,6 +15,22 @@ export async function getEmpleados() {
     console.error(error);
   }
 }
+
+export async function getVentasEmpleadoById(id) {
+  try {
+    const response = await fetch(`${URL}/Empleado/${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${getCookieValue("miToken")}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const Empleados = await response.json();
+    return Empleados;
+  } catch (error) {
+    console.error(error);
+  }
+}
 export async function getPaises() {
   try {
     const response = await fetch(`${URL}/Pais`, {

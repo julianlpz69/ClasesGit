@@ -7,6 +7,7 @@ import {
   getDeptos,
   getPaises,
   getCiudades,
+  getEmpleadosById
 } from "./empleadoRequest.js";
 
 import { getCookieValue, RefrescarToken } from "../Config/Cookies.js";
@@ -41,8 +42,8 @@ formEmpleados.addEventListener("submit", async (event) => {
 });
 const Empleados = await getEmpleados();
 console.log(Empleados);
-mostrarEmpleados(Empleados);
-function mostrarEmpleados(EmpleadosAMostrar) {
+mostrarEmpleados(Empleados, tablaEmpleados);
+function mostrarEmpleados(EmpleadosAMostrar, tablaEmpleados) {
   tablaEmpleados.innerHTML = "";
 
   EmpleadosAMostrar.forEach((Empleado) => {
@@ -258,7 +259,7 @@ function buscarEmpleado() {
     nocoincidencias.style.display = "none";
   }
 
-  mostrarEmpleados(resultadoBusqueda);
+  mostrarEmpleados(resultadoBusqueda, tablaEmpleados);
 }
 
 document.getElementById("buscar").addEventListener("keyup", buscarEmpleado);
@@ -280,3 +281,15 @@ document.getElementById("btn-buscar").addEventListener("click", () => {
   }
 
 });
+
+const tablaVentas = document.getElementById("tablaVentas"); 
+
+document.getElementById("ventas-por-empleado").addEventListener("click", async () => {
+  const empleados = await getEmpleados();
+  empleados.forEach((empleado) => {
+    getEmpleadosById(empleado.id).then((empleado) => {
+      
+    })
+  })
+  mostrarEmpleados(empleados, tablaVentas);
+ });

@@ -1,29 +1,4 @@
-
-import { getCookieValue, PaginaRol,RefrescarToken } from "../Config/Cookies.js";
-
-import * as provReq from "../Empleados/ProveedorRequest.js";
-
-RefrescarToken()
-
-const nombreUser = document.getElementById("nombreUser");
-
-nombreUser.textContent = getCookieValue("userName");
-
-const btnRegresar2 = document.getElementById("ProvvedorRegresar");
-
-
-
-btnRegresar2.addEventListener("click", e =>{
- 
-
-    PaginaRol()
-})
-
-
-
-
-
-
+import * as provReq from "../Peticiones/ProveedorRequest.js";
 
 async function CrearTablaProveedores(){
     const tablageneral = document.getElementById("tabla-proveedor");
@@ -43,7 +18,34 @@ async function CrearTablaProveedores(){
 
     });
 }
-CrearTablaProveedores();
+async function StockMenos50(){
+    let datos = await provReq.ProveedorConMenosDe50ElementosEnStock();
+    let contendor = document.getElementById("stockless50");
+    console.log(datos)
+    datos.forEach(e => {
+        let list = "";
+        e.medicamento.forEach(e => {
+            list += `<li>${e.nombreMedicamento}(${e.stock})</li>`;
+        })
+        contendor.innerHTML += `
+        <div class = "card bg-warning row p-2 m-2">
+            <div class = "row">
+                <div class = "col-md-6">
+                    <h4>Nombre: ${e.nombreProveedor}</h4>
+                    <h5 style="color:grey;">Contacto: ${e.contactoProveedor}</h5>
+                </div>
+                <div class = "col-md-6 ">
+                    <h5>Medicamentos</h5>
+                    <ul>
+                        ${list}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        `;
+        console.log(e.nombreProveedor)
+    })
+}
 export function Eliminar(ev){
     let id = parseInt( ev.target.getAttribute("id").match(/[0-9]/g).join(""));
     provReq.EliminarProveedor(id);
@@ -51,3 +53,19 @@ export function Eliminar(ev){
     let tabla = fila.parentNode;
     tabla.removeChild(fila);
 }
+
+function ASD (){
+    RefrescarToken()
+
+    setTimeout(() => {
+      
+      }, 500);
+
+
+}
+
+CrearTablaProveedores();
+CrearTablaProveedoresPorCantidadVendida();
+ProveedorQueMasVendio();
+StockMenos50();
+ASD()

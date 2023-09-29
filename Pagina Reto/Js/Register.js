@@ -55,7 +55,7 @@ formuRegistrar.addEventListener('submit',async (e) => {
   
               if (result === "Usuario Registrado Correctamente"){
                   alert("Tu registro se ha realizado correctamente")
-                  window.location.replace("../Html/Pagina_Login.html");
+                  window.location.replace("../Html/Pagina_Inicio_Admin.html");
               }
               console.log("Resultado:", result);
             })

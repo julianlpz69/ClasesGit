@@ -5,6 +5,9 @@
 body {
     background: #e6f7ff;
 }
+input::-webkit-inner-spin-button{
+    display: none;
+  }
 .navbar-nav a {
     font-size: 15px;
     text-transform: uppercase;

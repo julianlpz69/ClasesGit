@@ -131,6 +131,9 @@ body{
     display: flex;
     justify-content: center;
   }
+  input::-webkit-inner-spin-button{
+    display: none;
+  }
   
   .social-icons .icon {
     border-radius: 0.125rem;

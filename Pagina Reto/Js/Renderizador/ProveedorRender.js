@@ -10,10 +10,11 @@ nombreUser.textContent = getCookieValue("userName");
 const btnRegresar2 = document.getElementById("ProvvedorRegresar");
 
 const GuardarModal = document.getElementById("GuardarProv");
-
+const numeroRandom = function(max){
+     return Math.floor(Math.random() * max);
+}
 
 btnRegresar2.addEventListener("click", e =>{
-
     PaginaRol()
 })
 GuardarModal.addEventListener("submit", async (ev) => {
@@ -49,20 +50,38 @@ GuardarModal.addEventListener("submit", async (ev) => {
 });
 async function CrearTablaProveedoresPorCantidadVendida(){
     let contenedor = document.getElementById("diagrama_proveedor");
-
     let data = await provReq.Total2023PorProveedor();
     let stonkmax = parseInt(data.sort((a,b) => parseInt(b.totalAnual) - parseInt(a.totalAnual ))[0].totalAnual) + 20;
-    console.log(stonkmax);
     data.forEach(e => {
         let totalAnual = parseInt(e.totalAnual)
         let arre = Math.ceil( (  parseInt(totalAnual)/ stonkmax) * 100)
         let porc = arre / 2
-        console.log(porc)
         contenedor.innerHTML += `
-        <div width = "60%" style = "background-color:white;">
-            <div style = "background-color:red;width:${porc}%">${e.nombreProveedor}</div>
+        <div class= "col-md-6  " >
+            <div class = "card m-1 p-2">
+                <h5>Nombre: ${e.nombreProveedor}</h5>
+                <h6 style="color:grey;">Total: ${e.totalAnual}$</h6>
+            </div>
         </div>`
+      
     });
+}
+async function ProveedorQueMasVendio(){
+    let contenedor = document.getElementById("vendedorNumero1");
+    let dato = await provReq.GetProveedorQueMasHaVendido()
+    let datoOrdenado = dato.sort((a,b) => a-b)
+    contenedor.innerHTML = `
+        <div class = "card bg-primary p-3 text-white">
+            <h4>Nombre: ${datoOrdenado[0].nombreProveedor}</h2>
+            <h5>Contacto: ${datoOrdenado[0].contactoProveedor}</h3>
+            <h6 style="color:black;">Total Vendido: ${datoOrdenado[0].cantidadVendida}</h6>
+        </div>
+        <div class = "card bg-success mt-3 p-3 text-white">
+            <h4>Nombre: ${datoOrdenado[1].nombreProveedor}</h2>
+            <h5>Contacto: ${datoOrdenado[1].contactoProveedor}</h3>
+            <h6 style="color:black;">Total Vendido: ${datoOrdenado[1].cantidadVendida}</h6>
+        </div>
+    `
 }
 async function CrearTablaProveedores(){
     const tablageneral = document.getElementById("tabla-proveedor");
@@ -82,7 +101,34 @@ async function CrearTablaProveedores(){
 
     });
 }
-
+async function StockMenos50(){
+    let datos = await provReq.ProveedorConMenosDe50ElementosEnStock();
+    let contendor = document.getElementById("stockless50");
+    console.log(datos)
+    datos.forEach(e => {
+        let list = "";
+        e.medicamento.forEach(e => {
+            list += `<li>${e.nombreMedicamento}(${e.stock})</li>`;
+        })
+        contendor.innerHTML += `
+        <div class = "card bg-warning row p-2 m-2">
+            <div class = "row">
+                <div class = "col-md-6">
+                    <h4>Nombre: ${e.nombreProveedor}</h4>
+                    <h5 style="color:grey;">Contacto: ${e.contactoProveedor}</h5>
+                </div>
+                <div class = "col-md-6 ">
+                    <h5>Medicamentos</h5>
+                    <ul>
+                        ${list}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        `;
+        console.log(e.nombreProveedor)
+    })
+}
 export function Eliminar(ev){
     let id = parseInt( ev.target.getAttribute("id").match(/[0-9]/g).join(""));
     provReq.EliminarProveedor(id);
@@ -90,44 +136,19 @@ export function Eliminar(ev){
     let tabla = fila.parentNode;
     tabla.removeChild(fila);
 }
+
 function ASD (){
     RefrescarToken()
 
     setTimeout(() => {
-        console.log("Realizando el segundo bloque de código después de un retraso");
-        const url = 'http://localhost:5223/Farmacia/medicamento';
-
-const opciones = {
-    method: 'GET',
-    headers: {
-        'Authorization': `Bearer ${getCookieValue("miToken")}`,
-        'Content-Type': 'application/json'
-    }
-    };
-
-
-    fetch(url, opciones)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`La solicitud no fue exitosa. Código de estado: ${response.status}`);
-        }
-        return response.json(); 
-        })
-    .then(result => {
       
-        console.log("asdadas")
-        
-
-        })
-
-    .catch(error => {
-        console.error("Error:", error);
-        });
       }, 500);
 
 
 }
 
 CrearTablaProveedores();
-CrearTablaProveedoresPorCantidadVendida()
+CrearTablaProveedoresPorCantidadVendida();
+ProveedorQueMasVendio();
+StockMenos50();
 ASD()

@@ -40,12 +40,30 @@ GuardarModal.addEventListener("submit", async (ev) => {
         }
         await provReq.GuardarProveedor(body);
         alert("se ha guardado Correctamente")
+        location.reload();
     }catch(err){
         alert(err);
     }
     
 
-})
+});
+async function CrearTablaProveedoresPorCantidadVendida(){
+    let contenedor = document.getElementById("diagrama_proveedor");
+
+    let data = await provReq.Total2023PorProveedor();
+    let stonkmax = parseInt(data.sort((a,b) => parseInt(b.totalAnual) - parseInt(a.totalAnual ))[0].totalAnual) + 20;
+    console.log(stonkmax);
+    data.forEach(e => {
+        let totalAnual = parseInt(e.totalAnual)
+        let arre = Math.ceil( (  parseInt(totalAnual)/ stonkmax) * 100)
+        let porc = arre / 2
+        console.log(porc)
+        contenedor.innerHTML += `
+        <div width = "60%" style = "background-color:white;">
+            <div style = "background-color:red;width:${porc}%">${e.nombreProveedor}</div>
+        </div>`
+    });
+}
 async function CrearTablaProveedores(){
     const tablageneral = document.getElementById("tabla-proveedor");
     let data = await provReq.TodosLosProveedores();
@@ -111,4 +129,5 @@ const opciones = {
 }
 
 CrearTablaProveedores();
+CrearTablaProveedoresPorCantidadVendida()
 ASD()

@@ -37,7 +37,7 @@ export async function RefrescarToken (){
 
     
     if (Date() >= getCookieValue(name)){
-        var seguir = confirm("Tu sesión a Caducado, quieres seguir? ")
+        var seguir = true
 
         
         if(seguir == true){

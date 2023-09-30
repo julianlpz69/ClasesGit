@@ -12,6 +12,16 @@ export async function GetProveedorQueMasHaVendido(){
         console.log(err);
     }
 }
+export async function GetProveedorById(id){
+    try{
+        var datos = await fetch(`${URL}Find/${id}`,config());
+         var json = await datos.json();
+         console.log(await json);
+         return json; 
+     }catch(err){
+         console.log(err);
+     }
+}
 export async function GetMedicamentosDelProveedorPorNombre(name){
     try{
         var datos = await fetch(`${URL}Nombre?m=${name}`,config());

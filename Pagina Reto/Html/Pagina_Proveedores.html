@@ -23,8 +23,7 @@
 
         <!-- Cuerpo del modal -->
         <div class="modal-body">
-          <form action="" id="GuardarProv" class="form row">
-
+          <form action="" id="GuardarProv" class=" row">
             <div class="form-group col-md-6">
               <label for="Nombre">Nombre del Proveedor</label>
               <input type="text" name="nombre" class="form-control">
@@ -74,6 +73,129 @@
       </div>
     </div>
   </div>
+  <div class="modal" id="ModalEdicion">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Título del Modal</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Cuerpo del modal -->
+        <div class="modal-body">
+          <form action="" id="updateProv" class="form row">
+            <input type="hidden" name="idProv">
+            <input type="hidden" name="idDireccion">
+            <div class="form-group col-md-6">
+              <label for="Nombre">Nombre del Proveedor</label>
+              <input type="text" name="nombre" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="telefono">Telefono</label>
+              <input type="text" name="telefono" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="pais">Pais</label>
+              <select name="pais" id="pais" class="form-control"></select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="departamento">Departamento</label>
+              <select name="departamento" id="departamento" class="form-control"></select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="ciudad">Ciudad</label>
+              <select name="ciudad" id="ciudad" class="form-control"></select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="carrera">Carrera</label>
+              <input type="text" name="carrera" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="calle">Calle</label>
+              <input type="text" name="calle" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="numero">Numero</label>
+              <input type="text" name="numero" class="form-control">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="complemento">Complemento</label>
+              <textarea class="form-control" name="complemento"></textarea>
+            </div>
+            <input type="submit" name="guardar" value="Guardar">
+          </form>
+        </div>
+
+        <!-- Pie del modal -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Guardar cambios</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="modalBusqueda">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Busqueda por Proveedor</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Cuerpo del modal -->
+        <div class="modal-body">
+          <form action="" id="GuardarProv" class="form row">
+
+            <div class="form-group col-md-12">
+              <label for="Nombre">Nombre del Proveedor</label>
+              <select id="opcprov" class="form-control">
+              </select>
+              <h2>Medicamentos: </h2>
+              <div id="medByName">
+
+              </div>
+            </div>
+        </div>
+
+        <!-- Pie del modal -->
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modalBusqueda">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Busqueda por Proveedor</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Cuerpo del modal -->
+        <div class="modal-body">
+          <form action="" id="GuardarProv" class="form row">
+
+            <div class="form-group col-md-12">
+              <label for="Nombre">Nombre del Proveedor</label>
+              <select id="opcprov" class="form-control">
+              </select>
+              <h2>Medicamentos: </h2>
+              <div id="medByName">
+
+              </div>
+            </div>
+        </div>
+
+        <!-- Pie del modal -->
+
+      </div>
+    </div>
+  </div>
+
   <nav class="navbar navbar-light bg-light ">
     <div class="container-fluid">
       <a class="navbar-brand" href="#Inicio"><span class="text-primary">Drogas</span>Max</a>
@@ -94,7 +216,7 @@
         <h2>Proveedores</h1>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#miModal">Guardar
           Proveedor</button>
-          <button type="button" style="float: right;" class="btn btn-success" data-toggle="modal" data-target="#miModal">Buscar</button>
+          <button type="button" style="float: right;" class="btn btn-success" data-toggle="modal" data-target="#modalBusqueda">Buscar</button>
         <table id="tabla-proveedor" class="table table-bordered mt-2">
           <thead>
             <th>Nombre</th>

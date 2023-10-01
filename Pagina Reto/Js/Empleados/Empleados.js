@@ -61,7 +61,7 @@ function mostrarEmpleados(EmpleadosAMostrar, tablaEmpleados) {
         <td>${Empleado.apellido}</td>
         <td>${Empleado.telefono}</td>
         <td><button class="btn btn-danger btn-eliminar"  data-id = "${Empleado.id}"><i class="fa-solid fa-trash btn-eliminar" data-id = "${Empleado.id}"></i></button></td>
-        <td><button class="btn btn-warning btn-editar" data-id ="${Empleado.id}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></button></td>
+        <td><button class="btn btn-warning btn-editar" data-id ="${Empleado.id}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square btn-editar" data-id ="${Empleado.id}"></i></button></td>
         `;
     tablaEmpleados.appendChild(nuevafila);
   });
@@ -126,8 +126,8 @@ async function cargarDeptos(paisId) {
     cargarCiudades
   );
 }
-function mostarConsulta(ConsultaId) {
-  const Consultas = ["inicio", "consulta1", "consulta2"]
+function mostrarConsulta(ConsultaId) {
+  const Consultas = ["inicio", "consulta1", "consulta2"];
   Consultas.forEach((id) => {
     const Consulta = document.getElementById(id);
     if (id === ConsultaId) {
@@ -139,24 +139,24 @@ function mostarConsulta(ConsultaId) {
 }
 document
   .querySelector("#listar-empleados")
-  .addEventListener("click", () => mostarConsulta("inicio"));
+  .addEventListener("click", () => mostrarConsulta("inicio"));
 document
   .querySelector("#ventas-por-empleado")
-  .addEventListener("click", () => mostarConsulta("consulta1"));
+  .addEventListener("click", () => mostrarConsulta("consulta1"));
 document
   .querySelector("#empleados-mas-de-5-ventas")
-  .addEventListener("click", () => mostarConsulta("consulta2"));
+  .addEventListener("click", () => mostrarConsulta("consulta2"));
 document
   .querySelector("#empleados-sin-ventas")
-  .addEventListener("click", () => mostarConsulta("consulta2"));
+  .addEventListener("click", () => mostrarConsulta("consulta2"));
 document
   .querySelector("#empleados-menos-de-5-ventas")
-  .addEventListener("click", () => mostarConsulta("consulta2"))
+  .addEventListener("click", () => mostrarConsulta("consulta2"));
 document
   .querySelector("#empleado-mas-medicamentos")
-  .addEventListener("click", () => mostarConsulta("consulta2"));
+  .addEventListener("click", () => mostrarConsulta("consulta2"));
 
-mostarConsulta("inicio");
+mostrarConsulta("inicio");
 async function cargarCiudades(deptoId) {
   const Ciudades = await getCiudades(deptoId);
   cargarSelect(selectCiudad, Ciudades.ciudades, "id", "nombre");
@@ -183,7 +183,7 @@ document.addEventListener("click", async (e) => {
     try {
       const response = await fetch(`${URL}/Empleado/${empleadoId}`);
       const empleado = await response.json();
-
+      console.log(empleado);
       const formModificarempleado = document.getElementById("editar-empleado");
       formModificarempleado.setAttribute("data-id", empleadoId);
       (document.getElementById("calleEdit").value = empleado.direccion.calle),
@@ -313,10 +313,9 @@ document
     }
   });
 
-
 const empleadosMas5 = document.getElementById("consulta2");
 async function consultar(metodo) {
-  empleadosMas5.innerHTML = ""; 
+  empleadosMas5.innerHTML = "";
 
   if (metodo === "getEmpleados0Ventas2023") {
     const empleados = await getEmpleados0Ventas2023();
@@ -331,11 +330,10 @@ async function consultar(metodo) {
         `;
       empleadosMas5.innerHTML += div;
     });
-  }
-  else if (metodo === "getEmpleadoMasDistintos") {
+  } else if (metodo === "getEmpleadoMasDistintos") {
     const empleado = await getEmpleadoMasDistintos();
 
-      let div = `
+    let div = `
         <div class="card border border-0 shadow-lg p-3 mb-5 rounded col-6 mx-auto mt-3" style="width: 18rem;" id="${empleado.id}">
           <img src="../Imag/farmaceutico.png" class="card-img-top" alt="...">
           <div class="card-body text-center">
@@ -343,10 +341,8 @@ async function consultar(metodo) {
             <p class="card-text">${empleado.cantidadMedicamentosDistintosVendidos} </p>
           </div>
         `;
-      empleadosMas5.innerHTML += div;
-    
-  }
-  else {
+    empleadosMas5.innerHTML += div;
+  } else {
     const empleados = await metodo;
     empleados.forEach((empleado) => {
       let div = `
@@ -361,7 +357,6 @@ async function consultar(metodo) {
     });
   }
 }
-
 
 document
   .getElementById("empleados-mas-de-5-ventas")
@@ -387,7 +382,6 @@ document
     consultar("getEmpleados0Ventas2023");
   });
 
-  
 document
   .getElementById("empleado-mas-medicamentos")
   .addEventListener("click", async () => {

@@ -313,59 +313,54 @@ document
     }
   });
 
+
 const empleadosMas5 = document.getElementById("consulta2");
 async function consultar(metodo) {
-   if (metodo === "getEmpleados0Ventas2023") {
-     const empleados = await getEmpleados0Ventas2023();
-     empleados.forEach((empleado) => {
-       let div = `
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="card border border-0 shadow-lg p-3 mb-5 rounded mt-3" id="${empleado.id}">
-            <img src="../Imag/farmaceutico.png" class="card-img-top" alt="...">
-            <div class="card-body text-center">
-              <h5 class="card-title">${empleado.nombre}  ${empleado.apellido}</h5>
-              <p class="card-text">${empleado.cargoEmpleado.nombreCargo} </p>
-            </div>
-          </div>
-        </div>`;
-       empleadosMas5.innerHTML += div;
-     });
-   } else if (metodo === "getEmpleadoMasDistintos") {
-     const empleado = await getEmpleadoMasDistintos();
-     empleadosMas5.innerHTML = "";
+  empleadosMas5.innerHTML = ""; 
 
-     let div = `
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+  if (metodo === "getEmpleados0Ventas2023") {
+    const empleados = await getEmpleados0Ventas2023();
+    empleados.forEach((empleado) => {
+      let div = `
+        <div class="card border border-0 shadow-lg p-3 mb-5 rounded col-2 + mt-3" style="width: 18rem;" id="${empleado.id}">
+          <img src="../Imag/farmaceutico.png" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title">${empleado.nombre}  ${empleado.apellido}</h5>
+            <p class="card-text">${empleado.cargoEmpleado.nombreCargo} </p>
+          </div>
+        `;
+      empleadosMas5.innerHTML += div;
+    });
+  }
+  else if (metodo === "getEmpleadoMasDistintos") {
+    const empleado = await getEmpleadoMasDistintos();
+
+      let div = `
         <div class="card border border-0 shadow-lg p-3 mb-5 rounded col-6 mx-auto mt-3" style="width: 18rem;" id="${empleado.id}">
           <img src="../Imag/farmaceutico.png" class="card-img-top" alt="...">
           <div class="card-body text-center">
             <h5 class="card-title">${empleado.nombre}  ${empleado.apellido}</h5>
             <p class="card-text">${empleado.cantidadMedicamentosDistintosVendidos} </p>
           </div>
-          </div>
-
         `;
-     empleadosMas5.innerHTML += div;
-   } else {
-     const empleados = await metodo;
-     empleadosMas5.innerHTML = "";
-     empleados.forEach((empleado) => {
-       let div = `
-   <div class="col-6 col-sm-6 col-md-4 col-lg-3">
-        <div class="card border border-0 shadow-lg p-3 mb-5 rounded mx-auto bg-primary-subtle  mt-3" style="width: 18rem;" id="${empleado.id}">
+      empleadosMas5.innerHTML += div;
+    
+  }
+  else {
+    const empleados = await metodo;
+    empleados.forEach((empleado) => {
+      let div = `
+        <div class="card border border-0 shadow-lg p-3 mb-5 rounded col-6 mx-auto mt-3" style="width: 18rem;" id="${empleado.id}">
           <img src="../Imag/farmaceutico.png" class="card-img-top" alt="...">
           <div class="card-body text-center">
             <h5 class="card-title">${empleado.nombre}  ${empleado.apellido}</h5>
             <p class="card-text">${empleado.cantidadVentas}</p>
           </div>
-          </div>
-          </div>
-
         `;
-       empleadosMas5.innerHTML += div;
-     });
-   }
- }
+      empleadosMas5.innerHTML += div;
+    });
+  }
+}
 
 
 document

@@ -1,3 +1,9 @@
+import { getCookieValue } from "./Config/Cookies.js";
+
+var nombreCookie = "userName";
+const nombreUser = document.getElementById("nombreUserRegister");
+
+nombreUser.textContent = getCookieValue(nombreCookie);
 
 // ----------------------------------- Registrar Usuarioo ------------------------------------------------------------------
 

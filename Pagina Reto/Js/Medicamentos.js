@@ -106,6 +106,14 @@ async function getMedicamentos() {
   }
 
   function MostrarMedicamentos(objeto) {
+    
+// Ordenar los objetos por el campo id
+    objeto.sort(function(a, b) {
+    return a.id - b.id;
+    });
+
+  // Ahora, medicamentos está ordenado por el campo id en orden ascendente
+
 
     tablaMedicamentos.innerHTML = ""
     function determinarRequisito(valor) {
@@ -225,7 +233,7 @@ async function AgregarMedicamento(Medicamento) {
 //Obtener todos los medicamentos con menos de 50 unidades en stock.
 
 
-async function Medicamento50(Medicamento) {
+async function Medicamento50() {
     try {
       const response = await fetch(`http://localhost:5223/Farmacia/medicamento/GetStock50`, {
         method: "GET",
@@ -242,7 +250,7 @@ async function Medicamento50(Medicamento) {
   }
 
 
-  async function MedicamentosExpiAntes2024(Medicamento) {
+  async function MedicamentosExpiAntes2024() {
     try {
       const response = await fetch(`http://localhost:5223/Farmacia/medicamento/GetExpiAntes2024`, {
         method: "GET",
@@ -260,7 +268,7 @@ async function Medicamento50(Medicamento) {
 
 
 
-  async function MedicamentoExpi2024(Medicamento) {
+  async function MedicamentoExpi2024() {
     try {
       const response = await fetch(`http://localhost:5223/Farmacia/medicamento/GetExpi2024`, {
         method: "GET",
@@ -278,7 +286,7 @@ async function Medicamento50(Medicamento) {
 
 
 
-  async function MedicamentoMayor50Menor100(Medicamento) {
+  async function MedicamentoMayor50Menor100() {
     try {
       const response = await fetch(`http://localhost:5223/Farmacia/medicamento/GetMayor50Menor100`, {
         method: "GET",
@@ -296,7 +304,7 @@ async function Medicamento50(Medicamento) {
 
 
 
-  async function MedicamentoValorMayor(Medicamento) {
+  async function MedicamentoValorMayor() {
     try {
       const response = await fetch(`http://localhost:5223/Farmacia/medicamento/GetValorMayor`, {
         method: "GET",
@@ -331,6 +339,11 @@ brnPeticion.addEventListener("click", async (e) => {
     }
 
     if(PeticionesMedicamentos == 1){
+        const Medicamentos = await Medicamento50();
+        MostrarMedicamentos(Medicamentos);
+    }
+
+    if(PeticionesMedicamentos == 2){
         const Medicamentos = await MedicamentosExpiAntes2024();
         MostrarMedicamentos(Medicamentos);
     }
@@ -347,9 +360,7 @@ brnPeticion.addEventListener("click", async (e) => {
 
     if(PeticionesMedicamentos == 5){
         const Medicamentos = await MedicamentoValorMayor();
-        const lista = []
-        lista.push(Medicamentos)
-        MostrarMedicamentos(lista);
+        MostrarMedicamentos(Medicamentos);
     }
 
   });

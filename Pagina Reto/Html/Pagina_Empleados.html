@@ -6,6 +6,9 @@
     <title>DrogasMax</title>
     <link rel="icon" href="../Imag/Logo.png">
     <link href="../Style/Diseño_Empleados.css" rel="stylesheet" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   </head>
   <body>
@@ -133,17 +136,73 @@
       <div class=" col-1 mx-auto">
         <button class="btn btn-outline-primary fw-bolder " type="submit" id="agregar">Agregar</button>
       </div>
+
     </form>
     
-    <div class="container mt5 pb-5 pt-5">
-      <div class="row">
-        <div class="offset-md-3 col-md-6">
-          <input type="text" class="form-control" id="buscar" placeholder="Buscar..." >
+<div class="container mt-5 pb-5 pt-5">
+  <div class="row">
+    <div class="offset-md-3 col-md-6">
+      <h1 class="modal-title fs-5">Consultas</h1>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" id="buscar" placeholder="Buscar..." aria-label="Buscar">
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary" type="button" id="btn-buscar">
+          <i class="fa-solid fa-caret-down" id="flecha"></i>
+          </button>
         </div>
       </div>
+      <div class="list-group" id="filtros">
+        <a href="#tablaEmpleados" class="list-group-item list-group-item-action" id="listar-empleados">
+          <i class="fas fa-users"></i> listar Empleados
+        </a>
+        <a href="#tablaVentas" class="list-group-item list-group-item-action" id="ventas-por-empleado">
+          <i class="fas fa-chart-line"></i> Cantidad de ventas realizadas por cada empleado en 2023
+        </a>
+        <a href="#consulta2" class="list-group-item list-group-item-action" id="empleados-mas-de-5-ventas">
+          <i class="fas fa-users"></i> Empleados que hayan hecho más de 5 ventas en total
+        </a>
+        <a href="#consulta2" class="list-group-item list-group-item-action" id="empleados-sin-ventas">
+          <i class="fas fa-user-times"></i> Empleados que no han realizado ninguna venta en 2023
+        </a>
+        <a href="#consulta2" class="list-group-item list-group-item-action" id="empleados-sin-ventas-abril">
+          <i class="fas fa-user-times"></i> Empleados que no realizaron Ventas en abril 2023
+        </a>
+        <a href="#consulta2" class="list-group-item list-group-item-action" id="empleados-menos-de-5-ventas">
+          <i class="fas fa-user-times"></i> Empleados con menos de 5 ventas en 2023
+        </a>
+        <a href="#consulta2" class="list-group-item list-group-item-action" id="empleado-mas-medicamentos">
+          <i class="fas fa-pills"></i> Empleado que ha vendido la mayor cantidad de medicamentos distintos en 2023
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" id="consulta1">
+    <div class="table-responsive mt-5">
+      <table class="table table-striped
+                          table-hover	
+                          table-borderless
+                          table-info
+                          align-middle">
+        <thead>
+          <th>id</th>
+          <th>Cargo</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Cantidad de ventas</th>
+        </thead>
+        <tbody class="table-group-divider" id="tablaVentas">
     
-    
-      <div class="table-responsive mt-5">
+        </tbody>
+      </table>
+      <p id="noResults" style="display:none">No hay coincidencias!</p>
+    </div>
+</div>
+
+<div id="consulta2" class="row">
+
+</div>
+      <div class="table-responsive mt-3" id="inicio">
         <table class="table table-striped
                 table-hover	
                 table-borderless
@@ -164,11 +223,10 @@
         </table>
         <p id="noResults" style="display:none">No hay coincidencias!</p>
       </div>
+
     </div>
-    
     </div>
-   
- 
+
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">

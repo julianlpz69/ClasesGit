@@ -62,6 +62,25 @@ export async function getEmpleados0Ventas2023() {
   }
 }
 
+export async function getEmpleadoMasDistintos() {
+  try {
+    const response = await fetch(
+      `${URL}/Empleado/Ventas/2023/Mas-medicamentos-distintos`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${getCookieValue("miToken")}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const Empleados = await response.json();
+    return Empleados;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function getVentasEmpleadoById(id) {
   try {
     const response = await fetch(`${URL}/Empleado/ventas-por-empleado/${id}`, {

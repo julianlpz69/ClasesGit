@@ -11,6 +11,7 @@ import {
   getEmpleadosMas5Ventas,
   getEmpleadosMenos5Ventas2023,
   getEmpleados0Ventas2023,
+  getEmpleadoMasDistintos,
 } from "./empleadoRequest.js";
 
 import { getCookieValue, RefrescarToken } from "../Config/Cookies.js";
@@ -47,6 +48,7 @@ formEmpleados.addEventListener("submit", async (event) => {
 const Empleados = await getEmpleados();
 console.log(Empleados);
 mostrarEmpleados(Empleados, tablaEmpleados);
+
 function mostrarEmpleados(EmpleadosAMostrar, tablaEmpleados) {
   tablaEmpleados.innerHTML = "";
 
@@ -124,41 +126,37 @@ async function cargarDeptos(paisId) {
     cargarCiudades
   );
 }
-// function mostarConsulta(ConsultaId) {
-//   const Consultas = [
-//     "inicio",
-//     "clientes",
-//     "servicios",
-//     "compra",
-//     "fidelizacion",
-//   ];
-//   Consultas.forEach((id) => {
-//     const Consulta = document.getElementById(id);
-//     if (id === ConsultaId) {
-//       Consulta.style.display = "block";
-//     } else {
-//       Consulta.style.display = "none";
-//     }
-//   });
-// }
+function mostarConsulta(ConsultaId) {
+  const Consultas = ["inicio", "consulta1", "consulta2"]
+  Consultas.forEach((id) => {
+    const Consulta = document.getElementById(id);
+    if (id === ConsultaId) {
+      Consulta.style.display = "block";
+    } else {
+      Consulta.style.display = "none";
+    }
+  });
+}
+document
+  .querySelector("#listar-empleados")
+  .addEventListener("click", () => mostarConsulta("inicio"));
+document
+  .querySelector("#ventas-por-empleado")
+  .addEventListener("click", () => mostarConsulta("consulta1"));
+document
+  .querySelector("#empleados-mas-de-5-ventas")
+  .addEventListener("click", () => mostarConsulta("consulta2"));
+document
+  .querySelector("#empleados-sin-ventas")
+  .addEventListener("click", () => mostarConsulta("consulta2"));
+document
+  .querySelector("#empleados-menos-de-5-ventas")
+  .addEventListener("click", () => mostarConsulta("consulta2"))
+document
+  .querySelector("#empleado-mas-medicamentos")
+  .addEventListener("click", () => mostarConsulta("consulta2"));
 
-// document
-//   .querySelector("a[href='#Inicio']")
-//   .addEventListener("click", () => mostarConsulta("inicio"));
-// document
-//   .querySelector("a[href='#Clientes']")
-//   .addEventListener("click", () => mostarConsulta("clientes"));
-// document
-//   .querySelector("a[href='#Servicios']")
-//   .addEventListener("click", () => mostarConsulta("servicios"));
-// document
-//   .querySelector("a[href='#Compra']")
-//   .addEventListener("click", () => mostarConsulta("compra"));
-// document
-//   .querySelector("a[href='#Fidelizacion']")
-//   .addEventListener("click", () => mostarSeccion("fidelizacion"));
-
-// mostarSeccion("inicio");
+mostarConsulta("inicio");
 async function cargarCiudades(deptoId) {
   const Ciudades = await getCiudades(deptoId);
   cargarSelect(selectCiudad, Ciudades.ciudades, "id", "nombre");
@@ -296,10 +294,13 @@ document
   .getElementById("ventas-por-empleado")
   .addEventListener("click", async () => {
     const empleados = await getEmpleados();
-    empleados.forEach(async (empleado) => {
+    console.log(empleados);
+
+    tablaVentas.innerHTML = "";
+
+    for (const empleado of empleados) {
       const empl = await getVentasEmpleadoById(empleado.id);
 
-      tablaVentas.innerHTML = "";
       const nuevafila = document.createElement("tr");
       nuevafila.innerHTML = `
         <td>${empl.id}</td>
@@ -307,43 +308,66 @@ document
         <td>${empl.nombre}</td>
         <td>${empl.apellido}</td>
         <td>${empl.cantidadVentas}</td>
-        `;
+      `;
       tablaVentas.appendChild(nuevafila);
-    });
+    }
   });
+
 const empleadosMas5 = document.getElementById("consulta2");
 async function consultar(metodo) {
-  if (metodo === getEmpleados0Ventas2023())
-  {
-  const empleados = await metodo;
+   if (metodo === "getEmpleados0Ventas2023") {
+     const empleados = await getEmpleados0Ventas2023();
      empleados.forEach((empleado) => {
-       empleadosMas5.innerHTML = "";
        let div = `
-            <div class="card border border-0 shadow-lg p-3 mb-5  rounded col-6 mx-auto mt-3" style="width: 18rem;" id="${empleado.id}">
-              <img src="../Imag/farmaceutico.png" class="card-img-top" alt="...">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card border border-0 shadow-lg p-3 mb-5 rounded mt-3" id="${empleado.id}">
+            <img src="../Imag/farmaceutico.png" class="card-img-top" alt="...">
             <div class="card-body text-center">
               <h5 class="card-title">${empleado.nombre}  ${empleado.apellido}</h5>
-               <p class="card-text">xxxxxxxxxxxx</p>
+              <p class="card-text">${empleado.cargoEmpleado.nombreCargo} </p>
             </div>
-          `;
+          </div>
+        </div>`;
        empleadosMas5.innerHTML += div;
      });
-  }
-  const empleados = await metodo;
-  
-  empleados.forEach((empleado) => {
-    empleadosMas5.innerHTML = "";
-    let div = `
-            <div class="card border border-0 shadow-lg p-3 mb-5  rounded col-6 mx-auto mt-3" style="width: 18rem;" id="${empleado.id}">
-              <img src="../Imag/farmaceutico.png" class="card-img-top" alt="...">
-            <div class="card-body text-center">
-              <h5 class="card-title">${empleado.nombre}  ${empleado.apellido}</h5>
-               <p class="card-text">${empleado.cantidadVentas}</p>
-            </div>
-          `;
-    empleadosMas5.innerHTML += div;
-  });
-}
+   } else if (metodo === "getEmpleadoMasDistintos") {
+     const empleado = await getEmpleadoMasDistintos();
+     empleadosMas5.innerHTML = "";
+
+     let div = `
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card border border-0 shadow-lg p-3 mb-5 rounded col-6 mx-auto mt-3" style="width: 18rem;" id="${empleado.id}">
+          <img src="../Imag/farmaceutico.png" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title">${empleado.nombre}  ${empleado.apellido}</h5>
+            <p class="card-text">${empleado.cantidadMedicamentosDistintosVendidos} </p>
+          </div>
+          </div>
+
+        `;
+     empleadosMas5.innerHTML += div;
+   } else {
+     const empleados = await metodo;
+     empleadosMas5.innerHTML = "";
+     empleados.forEach((empleado) => {
+       let div = `
+   <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+        <div class="card border border-0 shadow-lg p-3 mb-5 rounded mx-auto bg-primary-subtle  mt-3" style="width: 18rem;" id="${empleado.id}">
+          <img src="../Imag/farmaceutico.png" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title">${empleado.nombre}  ${empleado.apellido}</h5>
+            <p class="card-text">${empleado.cantidadVentas}</p>
+          </div>
+          </div>
+          </div>
+
+        `;
+       empleadosMas5.innerHTML += div;
+     });
+   }
+ }
+
+
 document
   .getElementById("empleados-mas-de-5-ventas")
   .addEventListener("click", () => {
@@ -365,7 +389,12 @@ document
 document
   .getElementById("empleados-sin-ventas")
   .addEventListener("click", async () => {
-    const empleado = getEmpleados0Ventas2023()
-    console.log(await empleado);
-    consultar(empleado);
+    consultar("getEmpleados0Ventas2023");
+  });
+
+  
+document
+  .getElementById("empleado-mas-medicamentos")
+  .addEventListener("click", async () => {
+    consultar("getEmpleadoMasDistintos");
   });

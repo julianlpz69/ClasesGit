@@ -88,3 +88,12 @@ export async function modificarEmpleado(datosEmpl, EmplID) {
     console.error(error);
   }
 }
+export async function GetEmpleadoById(id){
+  try{
+    let data = await fetch(`${URL}/Empleado/${id}`);
+    let json = await (await data.json());
+    return json;
+  }catch(err){
+    console.log(err);
+  }
+}

@@ -28,6 +28,7 @@
     </div>
   </nav>
 
+  
 
   <main class="container">
     <h2>Lista de Ventas</h2>
@@ -121,12 +122,28 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-              <form id="createForm">
-                <div class="mb-3">
-                  <label class="form-label">ValorTotal</label>
-                  <input type="number" class="form-control" name="valorTotal">
+              <form class="row g-3 needs-validation mt-4" id="agregarFacturaCompra">
+                <div class="col-md-4">
+                  <label for="email" class="form-label">Proveedor</label>
+                  <select class="form-select" id="proveedorSelect" aria-label="Default select example">
+                    <option selected>Escoja una opcion</option>
+
+                  </select>
+              
                 </div>
-                <button type="submit" class="btn btn-primary">Crear</button>
+                <div class="col-md-4">
+                  <label for="email" class="form-label">Metodo Pago</label>
+                  <select class="form-select" id="MetodoPagoSelect" aria-label="Default select example">
+                    <option selected>Escoja una opcion</option>
+                
+                  </select>
+                
+                </div>
+                
+                <div class=" col-1 mx-auto">
+                  <button class="btn btn-outline-primary fw-bolder " type="submit" id="agregar">Agregar</button>
+                </div>
+              
               </form>
             </div>
           </div>

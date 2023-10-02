@@ -1,5 +1,5 @@
 import * as clientes from "./ClienteRequest.js";
-
+import { getTipoDocumentos } from "./Empleados/empleadoRequest.js";
 var nombreCookie = "userName";
 
 // Función para obtener el valor de una cookie por su nombre
@@ -19,7 +19,9 @@ btnRegresar.addEventListener("click", () => {
 RefrescarToken();
 
 //------------------------------------------------------------------------------------------------------------
-
+const selectTipoDoc = document.getElementById("tipoDoc");
+const tiposDocumento = await getTipoDocumentos();
+cargarSelect(selectTipoDoc, tiposDocumento, "id", "nombreTipoDocumento", null);
 const formClientes = document.getElementById("agregar-cliente"),
   tablaClientes = document.getElementById("tabla-clientes");
 

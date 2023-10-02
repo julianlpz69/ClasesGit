@@ -16,6 +16,39 @@ export async function getEmpleados() {
   }
 }
 
+export async function getTipoDocumentos() {
+  try {
+    const response = await fetch(`${URL}/TipoDoc`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${getCookieValue("miToken")}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const Empleados = await response.json();
+    return Empleados;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getCargoEmpleado() {
+  try {
+    const response = await fetch(`${URL}/CargoEmpleado`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${getCookieValue("miToken")}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const Empleados = await response.json();
+    return Empleados;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
 export async function getEmpleadosMas5Ventas() {
   try {
     const response = await fetch(`${URL}/Empleado/Ventas/mas-de-5`, {

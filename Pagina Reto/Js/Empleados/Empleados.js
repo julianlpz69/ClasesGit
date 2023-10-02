@@ -12,6 +12,8 @@ import {
   getEmpleadosMenos5Ventas2023,
   getEmpleados0Ventas2023,
   getEmpleadoMasDistintos,
+  getTipoDocumentos,
+  getCargoEmpleado,
 } from "./empleadoRequest.js";
 
 import { getCookieValue, RefrescarToken } from "../Config/Cookies.js";
@@ -101,7 +103,7 @@ const selectPais = document.getElementById("pais"),
   selectPaisMod = document.getElementById("paisEdit"),
   selectDeptoMod = document.getElementById("departamentoEdit"),
   selectCiudadMod = document.getElementById("ciudadEdit");
-async function cargarSelect(
+export async function cargarSelect(
   selectElement,
   data,
   idField,
@@ -137,6 +139,15 @@ async function cargarPaises() {
   cargarSelect(selectPais, Paises, "id", "nombre", cargarDeptos);
   cargarSelect(selectPaisMod, Paises, "id", "nombre", cargarDeptos);
 }
+
+const selectTipoDoc = document.getElementById("tipoDoc");
+const tiposDocumento = await getTipoDocumentos();
+cargarSelect(selectTipoDoc, tiposDocumento, "id", "nombreTipoDocumento", null);
+
+const selectCargoEmpleado = document.getElementById("CargoEmpleado");
+const cargosEmpleado = await getCargoEmpleado();
+cargarSelect(selectCargoEmpleado, cargosEmpleado, "id", "nombreCargo", null);
+
 
 async function cargarDeptos(paisId) {
   const deptos = await getDeptos(paisId);

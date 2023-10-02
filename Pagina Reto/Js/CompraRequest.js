@@ -16,3 +16,17 @@ export async function getCompras() {
     console.error(error);
   }
 }
+export async function eliminarCliente(EmplID) {
+  try {
+    await fetch(`${URL}/Compra/${EmplID}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: ` Bearer ${getCookieValue("miToken")}`,
+
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}

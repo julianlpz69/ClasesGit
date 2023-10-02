@@ -18,7 +18,7 @@ async function CrearTablaVentas() {
         let pacienteDato = await GetPacienteById(element.idClienteFK);
         element.medicamentosVendidos.forEach(async e => {
             let datos = await FactRequest.GetMedicamentoById(e.idMedicamentoFk);
-            medicamento.innerHTML =`${datos.nombreMedicamento}(${datos.precioMedicamento})`;
+            medicamento.innerHTML =`${datos.nombreMedicamento}(${datos.precioMedicamento})<br>`;
         });
         valorTotal.innerHTML = element.valorTotal;
         valorTotalIva.innerHTML = element.valorTotalMasIva;
@@ -50,7 +50,38 @@ async function MedicamentoMenosVendido(){
         <h6>Inventario: ${dato.stock}</h6>
     `;
 }
+async function GananciasPrimerTrimestre(){
+    const contendor = document.getElementById("p-tri");
+    let dato = await FactRequest.GetGananciasPrimerTrimestre()
+    contendor.innerHTML = dato;
+}
+async function ProductosNoVendidos(){
+    const contendor = document.getElementById("table-menos-vendidos");
+    let data = await FactRequest.MedicamentosNoVendidos();
+    data.forEach(async element => {
+        let tr = contendor.insertRow(1);
+        let nombre = tr.insertCell(0);
+        let receta = tr.insertCell(1);
+        let precio = tr.insertCell(2);
+        let stock = tr.insertCell(3);
+        let fecha = tr.insertCell(4);
+
+        nombre.innerHTML = element.nombreMedicamento;
+        receta.innerHTML = element.requiereReceta ? "SI":"NO";
+        precio.innerHTML = element.precioMedicamento;
+        stock.innerHTML = element.stock;
+        fecha.innerHTML = element.fechaExpiracion
+    });
+}
+async function TotalVendido(){
+    const contendor = document.getElementById("total");
+    let dato = await FactRequest.TotalVendido();
+    contendor.innerHTML = dato.mensaje;
+}
 CrearTablaVentas();
 FactRequest.VendasDeParacetamol();
 CrearTablaVentasParacetamol();
 MedicamentoMenosVendido();
+GananciasPrimerTrimestre()
+ProductosNoVendidos()
+TotalVendido()

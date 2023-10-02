@@ -50,3 +50,33 @@ export async function MenosVendido(){
         console.log(err);
     }
 }
+export async function GetGananciasPrimerTrimestre(){
+    try{
+        let datos = await fetch(`${URL}Total/primer-trimestre`, config());
+        let json = await datos.json();
+        console.log(json)
+        return json;
+    }catch(err){
+        console.log(err);
+    }
+}
+export async function MedicamentosNoVendidos(){
+    try{
+        let datos = await fetch(`${URL}Medicamento/no-vendidos`, config());
+        let json = await datos.json();
+        console.log(json)
+        return json;
+    }catch(err){
+        console.log(err);
+    }
+}
+export async function TotalVendido(){
+    try{
+        let datos = await fetch(`${URL}Total`, config());
+        let json = await datos.json();
+        console.log(json)
+        return json;
+    }catch(err){
+        console.log(err);
+    }
+}

@@ -24,22 +24,45 @@ const formClientes = document.getElementById("agregar-cliente"),
   tablaClientes = document.getElementById("tabla-clientes");
 
   formClientes.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const direccion = {
-      DireccionCalle: document.getElementById("calle").value,
-      DireccionNumero: document.getElementById("numeroDir").value,
-      DireccionCarrera: document.getElementById("carrera").value,
-      DireccionTipoVia: document.getElementById("tipoVia").value,
-      DireccionIdCiudadFk: document.getElementById("ciudad").value,
-      DireccionComplemento: document.getElementById("complemento").value,
-      ClienteNombre: document.getElementById("nombre").value,
-      ClienteApellido: document.getElementById("apellido").value,
-      ClienteCedula: document.getElementById("id").value,
-      ClienteTelefono: document.getElementById("telefono").value,
-      ClienteIdTipoDocumentoFk: document.getElementById("tipoDoc").value,
-    };
-    await clientes.agregarCliente(direccion);
-    window.location.reload();
+      event.preventDefault();
+      const selectDireccion = document.getElementById("selectDireccion");
+      if (selectDireccion.value == "0") {
+        alert("Debe seleccionar una Direccion");
+        return;
+      } else if (selectDireccion.value == "1") {
+           const direccion = {
+             DireccionCalle: document.getElementById("calle").value,
+             DireccionNumero: document.getElementById("numeroDir").value,
+             DireccionCarrera: document.getElementById("carrera").value,
+             DireccionTipoVia: document.getElementById("tipoVia").value,
+             DireccionIdCiudadFk: document.getElementById("ciudad").value,
+             DireccionComplemento: document.getElementById("complemento").value,
+             ClienteNombre: document.getElementById("nombre").value,
+             ClienteApellido: document.getElementById("apellido").value,
+             ClienteCedula: document.getElementById("id").value,
+             ClienteTelefono: document.getElementById("telefono").value,
+             ClienteIdTipoDocumentoFk: document.getElementById("tipoDoc").value,
+           };
+           await clientes.agregarCliente(direccion);
+           window.location.reload();
+      } else {
+           const direccion = {
+             DireccionCalle: document.getElementById("carrera").value,
+             DireccionNumero: document.getElementById("numeroDir").value,
+             DireccionCarrera: document.getElementById("calle").value,
+             DireccionTipoVia: document.getElementById("tipoVia").value,
+             DireccionIdCiudadFk: document.getElementById("ciudad").value,
+             DireccionComplemento: document.getElementById("complemento").value,
+             ClienteNombre: document.getElementById("nombre").value,
+             ClienteApellido: document.getElementById("apellido").value,
+             ClienteCedula: document.getElementById("id").value,
+             ClienteTelefono: document.getElementById("telefono").value,
+             ClienteIdTipoDocumentoFk: document.getElementById("tipoDoc").value,
+           };
+           await clientes.agregarCliente(direccion);
+           window.location.reload();
+      }
+   
   });
 
   const selectPais = document.getElementById("pais"),
@@ -146,27 +169,58 @@ document.addEventListener("click", async (e) => {
     document
       .getElementById("guardarCambios")
       .setAttribute("data-id", ClienteId);
-    try {
-      const response = await fetch(`${clientes.URL}/Cliente/${ClienteId}`);
-      const Cliente = await response.json();
-      console.log(Cliente);
-      const formModificarCliente = document.getElementById("editar-Cliente");
-      formModificarCliente.setAttribute("data-id", ClienteId);
-      (document.getElementById("calleEdit").value = Cliente.direccion.calle),
-        (document.getElementById("numeroDirEdit").value =
-          Cliente.direccion.numero),
-        (document.getElementById("carreraEdit").value =
-          Cliente.direccion.carrera),
-        (document.getElementById("tipoViaEdit").value =
-          Cliente.direccion.tipoVia),
-        (document.getElementById("ciudadEdit").value =
-          Cliente.direccion.idCiudadFk),
-        (document.getElementById("nombreEdit").value = Cliente.nombre),
-        (document.getElementById("apellidoEdit").value = Cliente.apellido),
-        (document.getElementById("idEdit").value = Cliente.cedula),
-        (document.getElementById("telefonoEdit").value = Cliente.telefono),
-        (document.getElementById("tipoDocEdit").value =
-          Cliente.idTipoDocumentoFk)
+      try {
+          const response = await fetch(`${clientes.URL}/Cliente/${ClienteId}`);
+          const Cliente = await response.json();
+          console.log(Cliente);
+          const formModificarCliente = document.getElementById("editar-Cliente");
+          formModificarCliente.setAttribute("data-id", ClienteId);
+          const selectDireccion = document.getElementById("selectDireccion");
+          if (selectDireccion.value == "0") {
+              alert("Debe seleccionar una Direccion");
+              return;
+          } else if (selectDireccion.value == "1") {
+                (document.getElementById("calleEdit").value =
+                  Cliente.direccion.calle),
+                  (document.getElementById("numeroDirEdit").value =
+                    Cliente.direccion.numero),
+                  (document.getElementById("carreraEdit").value =
+                    Cliente.direccion.carrera),
+                  (document.getElementById("tipoViaEdit").value =
+                    Cliente.direccion.tipoVia),
+                  (document.getElementById("ciudadEdit").value =
+                    Cliente.direccion.idCiudadFk),
+                  (document.getElementById("nombreEdit").value =
+                    Cliente.nombre),
+                  (document.getElementById("apellidoEdit").value =
+                    Cliente.apellido),
+                  (document.getElementById("idEdit").value = Cliente.cedula),
+                  (document.getElementById("telefonoEdit").value =
+                    Cliente.telefono),
+                  (document.getElementById("tipoDocEdit").value =
+                    Cliente.idTipoDocumentoFk);
+          } else {
+                (document.getElementById("calleEdit").value =
+                  Cliente.direccion.carrera),
+                  (document.getElementById("numeroDirEdit").value =
+                    Cliente.direccion.numero),
+                  (document.getElementById("carreraEdit").value =
+                    Cliente.direccion.calle),
+                  (document.getElementById("tipoViaEdit").value =
+                    Cliente.direccion.tipoVia),
+                  (document.getElementById("ciudadEdit").value =
+                    Cliente.direccion.idCiudadFk),
+                  (document.getElementById("nombreEdit").value =
+                    Cliente.nombre),
+                  (document.getElementById("apellidoEdit").value =
+                    Cliente.apellido),
+                  (document.getElementById("idEdit").value = Cliente.cedula),
+                  (document.getElementById("telefonoEdit").value =
+                    Cliente.telefono),
+                  (document.getElementById("tipoDocEdit").value =
+                    Cliente.idTipoDocumentoFk);
+          }
+    
     } catch (error) {
       console.error(error);
     }
@@ -187,25 +241,52 @@ document
     const direccionCarrera = document.getElementById("carreraEdit").value;
     const direccionNumero = document.getElementById("numeroDirEdit").value;
     const direccionIdCiudadFk = document.getElementById("ciudadEdit").value;
-    const idTipoDocumentoFK = document.getElementById("tipoDocEdit").value;
-    const ClienteDtoActualizado = {
-      id: ClienteID,
-      nombre: nombre,
-      apellido: apellido,
-      cedula: cedula,
-      telefono: telefono,
-      direccion: {
-        tipoVia: direccionTipoVia,
-        calle: direccionCalle,
-        carrera: direccionCarrera,
-        numero: direccionNumero,
-        idCiudadFk: direccionIdCiudadFk,
-      },
-      idTipoDocumentoFK: idTipoDocumentoFK,
-    };
-    console.log(ClienteDtoActualizado);
-    await clientes.modificarCliente(ClienteDtoActualizado, ClienteID);
-    window.location.reload();
+      const idTipoDocumentoFK = document.getElementById("tipoDocEdit").value;
+      const selectDireccion = document.getElementById("selectDireccionEdit");
+      if (selectDireccion.value == "0") {
+        alert("Debe seleccionar una Direccion");
+        return;
+      } else if (selectDireccion.value == "1")
+      {
+            const ClienteDtoActualizado = {
+              id: ClienteID,
+              nombre: nombre,
+              apellido: apellido,
+              cedula: cedula,
+              telefono: telefono,
+              direccion: {
+                tipoVia: direccionTipoVia,
+                calle: direccionCalle,
+                carrera: direccionCarrera,
+                numero: direccionNumero,
+                idCiudadFk: direccionIdCiudadFk,
+              },
+              idTipoDocumentoFK: idTipoDocumentoFK,
+            };
+            console.log(ClienteDtoActualizado);
+            await clientes.modificarCliente(ClienteDtoActualizado, ClienteID);
+            window.location.reload();
+      } else {
+            const ClienteDtoActualizado = {
+              id: ClienteID,
+              nombre: nombre,
+              apellido: apellido,
+              cedula: cedula,
+              telefono: telefono,
+              direccion: {
+                tipoVia: direccionTipoVia,
+                calle: direccionCarrera,
+                carrera: direccionCalle,
+                numero: direccionNumero,
+                idCiudadFk: direccionIdCiudadFk,
+              },
+              idTipoDocumentoFK: idTipoDocumentoFK,
+            };
+            console.log(ClienteDtoActualizado);
+            await clientes.modificarCliente(ClienteDtoActualizado, ClienteID);
+            window.location.reload();
+          }
+  
   });
 
 const tablaVentas = document.getElementById("tablaVentas");

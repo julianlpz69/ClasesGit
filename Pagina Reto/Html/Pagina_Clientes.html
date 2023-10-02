@@ -88,30 +88,40 @@
         
             </div>
         
+            <div class="col-md-6">
+              <label for="email" class="col-form-label-sm form-label">Dirección</label>
+              <select class="form-select" id="selectDireccion" aria-label="Default select example">
+                <option selected>Sellecione una opcion</option>
+                <option value=1>Calle</option>
+                <option value=2>Carrera</option>
+              </select>
+            </div>
             <div class="col-md-3">
-              <label for="calle" class="form-label">Calle </label>
               <input type="text" class="form-control" id="calle" title="Por favor ingrese solo números" required>
-        
+            </div>
+            <div class="col-1 text-center">
+              <label class="col-form-label-sm">#</label>
             </div>
             <div class="col-md-3">
-              <label for="numeroDir" class="form-label">Numero</label>
-              <input type="text" class="form-control" id="numeroDir" title="Por favor ingrese solo números" required>
-        
+              <input type="text" class="form-control" id="carrera" title="Por favor ingrese solo números" required>
+            </div>
+            <div class="col-1 text-center">
+              <label for="carrera" class="col-form-label-sm form-label">-</label>
+            
             </div>
             <div class="col-md-4">
-              <label for="carrera" class="form-label">Carrera </label>
-              <input type="text" class="form-control" id="carrera" title="Por favor ingrese solo números">
-        
+              <input type="text" class="form-control" id="numeroDir" title="Por favor ingrese solo números">
             </div>
-            <div class="col-md-4">
+            
+            <div class="col-md-6">
               <label for="complemento" class="form-label">Complemento </label>
               <input type="text" class="form-control" id="complemento" title="Por favor ingrese solo números">
-        
+            
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <label for="tipoVia" class="form-label">Tipo Via </label>
               <input type="text" class="form-control" id="tipoVia" title="Por favor ingrese solo números">
-        
+            
             </div>
             <div class=" col-1 mx-auto">
               <button class="btn btn-outline-primary fw-bolder " type="submit" id="agregar">Agregar</button>
@@ -245,31 +255,41 @@
                 
                   </div>
                 
-                  <div class="col-md-3">
-                    <label for="calle" class="form-label">Calle </label>
-                    <input type="text" class="form-control" id="calleEdit" title="Por favor ingrese solo números" required>
+                <div class="col-md-6">
+                  <label for="email" class="col-form-label-sm form-label">Dirección</label>
+                  <select class="form-select" id="selectDireccionEdit" aria-label="Default select example">
+                    <option selected>Sellecione una opcion</option>
+                    <option value=1>Calle</option>
+                    <option value=2>Carrera</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <input type="text" class="form-control" id="calleEdit" title="Por favor ingrese solo números" required>
+                </div>
+                <div class="col-1 text-center">
+                  <label class="col-form-label-sm">#</label>
+                </div>
+                <div class="col-md-3">
+                  <input type="text" class="form-control" id="carreraEdit" title="Por favor ingrese solo números" required>
+                </div>
+                <div class="col-1 text-center">
+                  <label for="carrera" class="col-form-label-sm form-label">-</label>
                 
-                  </div>
-                  <div class="col-md-3">
-                    <label for="numeroDir" class="form-label">Numero</label>
-                    <input type="text" class="form-control" id="numeroDirEdit" title="Por favor ingrese solo números" required>
+                </div>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" id="numeroDirEdit" title="Por favor ingrese solo números">
+                </div>
                 
-                  </div>
-                  <div class="col-md-4">
-                    <label for="carrera" class="form-label">Carrera </label>
-                    <input type="text" class="form-control" id="carreraEdit" title="Por favor ingrese solo números">
+                <div class="col-md-6">
+                  <label for="complemento" class="form-label">Complemento </label>
+                  <input type="text" class="form-control" id="complementoEdit" title="Por favor ingrese solo números">
                 
-                  </div>
-                  <div class="col-md-4">
-                    <label for="complemento" class="form-label">Complemento </label>
-                    <input type="text" class="form-control" id="complementoEdit" title="Por favor ingrese solo números">
+                </div>
+                <div class="col-md-6">
+                  <label for="tipoVia" class="form-label">Tipo Via </label>
+                  <input type="text" class="form-control" id="tipoViaEdit" title="Por favor ingrese solo números">
                 
-                  </div>
-                  <div class="col-md-4">
-                    <label for="tipoVia" class="form-label">Tipo Via </label>
-                    <input type="text" class="form-control" id="tipoViaEdit" title="Por favor ingrese solo números">
-                
-                  </div>
+                </div>
                 </form>
               </div>
               <div class="modal-footer">

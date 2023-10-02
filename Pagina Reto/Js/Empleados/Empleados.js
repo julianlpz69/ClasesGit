@@ -27,23 +27,52 @@ const formEmpleados = document.getElementById("agregar-empleado"),
 
 formEmpleados.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const direccion = {
-    DireccionCalle: document.getElementById("calle").value,
-    DireccionNumero: document.getElementById("numeroDir").value,
-    DireccionCarrera: document.getElementById("carrera").value,
-    DireccionTipoVia: document.getElementById("tipoVia").value,
-    DireccionIdCiudadFk: document.getElementById("ciudad").value,
-    DireccionComplemento: document.getElementById("complemento").value,
-    EmpleadoNombre: document.getElementById("nombre").value,
-    EmpleadoApellido: document.getElementById("apellido").value,
-    EmpleadoCedula: document.getElementById("id").value,
-    EmpleadoTelefono: document.getElementById("telefono").value,
-    EmpleadoIdTipoDocumentoFk: document.getElementById("tipoDoc").value,
-    EmpleadoIdCargoEmpleadoFk: document.getElementById("cargoEmpleado").value,
-  };
+  const SelDireccion = document.getElementById("selectDireccion");
+  if (SelDireccion.value == "0") {
+    alert("Debe seleccionar una Direccion");
+    return;
+    
+  } else if (SelDireccion.value == "1") {
+     const direccion = {
+       DireccionCalle: document.getElementById("calle").value,
+       DireccionNumero: document.getElementById("numeroDir").value,
+       DireccionCarrera: document.getElementById("carrera").value,
+       DireccionTipoVia: document.getElementById("tipoVia").value,
+       DireccionIdCiudadFk: document.getElementById("ciudad").value,
+       DireccionComplemento: document.getElementById("complemento").value,
+       EmpleadoNombre: document.getElementById("nombre").value,
+       EmpleadoApellido: document.getElementById("apellido").value,
+       EmpleadoCedula: document.getElementById("id").value,
+       EmpleadoTelefono: document.getElementById("telefono").value,
+       EmpleadoIdTipoDocumentoFk: document.getElementById("tipoDoc").value,
+       EmpleadoIdCargoEmpleadoFk:
+         document.getElementById("cargoEmpleado").value,
+       
+     };
 
-  await agregarEmpleado(direccion);
-  window.location.reload();
+      await agregarEmpleado(direccion);
+      window.location.reload();
+  } else {
+    const direccion = {
+      DireccionCalle: document.getElementById("carrera").value,
+      DireccionNumero: document.getElementById("numeroDir").value,
+      DireccionCarrera: document.getElementById("calle").value,
+      DireccionTipoVia: document.getElementById("tipoVia").value,
+      DireccionIdCiudadFk: document.getElementById("ciudad").value,
+      DireccionComplemento: document.getElementById("complemento").value,
+      EmpleadoNombre: document.getElementById("nombre").value,
+      EmpleadoApellido: document.getElementById("apellido").value,
+      EmpleadoCedula: document.getElementById("id").value,
+      EmpleadoTelefono: document.getElementById("telefono").value,
+      EmpleadoIdTipoDocumentoFk: document.getElementById("tipoDoc").value,
+      EmpleadoIdCargoEmpleadoFk: document.getElementById("cargoEmpleado").value,
+    };
+
+    await agregarEmpleado(direccion);
+    window.location.reload();
+  }
+ 
+
 });
 const Empleados = await getEmpleados();
 console.log(Empleados);
@@ -186,23 +215,50 @@ document.addEventListener("click", async (e) => {
       console.log(empleado);
       const formModificarempleado = document.getElementById("editar-empleado");
       formModificarempleado.setAttribute("data-id", empleadoId);
-      (document.getElementById("calleEdit").value = empleado.direccion.calle),
-        (document.getElementById("numeroDirEdit").value =
-          empleado.direccion.numero),
-        (document.getElementById("carreraEdit").value =
-          empleado.direccion.carrera),
-        (document.getElementById("tipoViaEdit").value =
-          empleado.direccion.tipoVia),
-        (document.getElementById("ciudadEdit").value =
-          empleado.direccion.idCiudadFk),
-        (document.getElementById("nombreEdit").value = empleado.nombre),
-        (document.getElementById("apellidoEdit").value = empleado.apellido),
-        (document.getElementById("idEdit").value = empleado.cedula),
-        (document.getElementById("telefonoEdit").value = empleado.telefono),
-        (document.getElementById("tipoDocEdit").value =
-          empleado.idTipoDocumentoFk),
-        (document.getElementById("cargoEmpleadoEdit").value =
-          empleado.idCargoEmpleadoFk);
+      const selectDireccion = document.getElementById("selectDireccion");
+      if (selectDireccion.value == "0") {
+        alert("Debe seleccionar una Direccion");
+        return;
+      } else if (selectDireccion.value == "1") {
+          (document.getElementById("calleEdit").value =
+            empleado.direccion.calle),
+            (document.getElementById("numeroDirEdit").value =
+              empleado.direccion.numero),
+            (document.getElementById("carreraEdit").value =
+              empleado.direccion.carrera),
+            (document.getElementById("tipoViaEdit").value =
+              empleado.direccion.tipoVia),
+            (document.getElementById("ciudadEdit").value =
+              empleado.direccion.idCiudadFk),
+            (document.getElementById("nombreEdit").value = empleado.nombre),
+            (document.getElementById("apellidoEdit").value = empleado.apellido),
+            (document.getElementById("idEdit").value = empleado.cedula),
+            (document.getElementById("telefonoEdit").value = empleado.telefono),
+            (document.getElementById("tipoDocEdit").value =
+              empleado.idTipoDocumentoFk),
+            (document.getElementById("cargoEmpleadoEdit").value =
+              empleado.idCargoEmpleadoFk);
+      } else {
+          (document.getElementById("calleEdit").value =
+            empleado.direccion.carrera),
+            (document.getElementById("numeroDirEdit").value =
+              empleado.direccion.numero),
+            (document.getElementById("carreraEdit").value =
+              empleado.direccion.calle),
+            (document.getElementById("tipoViaEdit").value =
+              empleado.direccion.tipoVia),
+            (document.getElementById("ciudadEdit").value =
+              empleado.direccion.idCiudadFk),
+            (document.getElementById("nombreEdit").value = empleado.nombre),
+            (document.getElementById("apellidoEdit").value = empleado.apellido),
+            (document.getElementById("idEdit").value = empleado.cedula),
+            (document.getElementById("telefonoEdit").value = empleado.telefono),
+            (document.getElementById("tipoDocEdit").value =
+              empleado.idTipoDocumentoFk),
+            (document.getElementById("cargoEmpleadoEdit").value =
+              empleado.idCargoEmpleadoFk);
+      }
+    
     } catch (error) {
       console.error(error);
     }
@@ -227,7 +283,12 @@ document
       document.getElementById("cargoEmpleadoEdit").value;
     const idTipoDocumentoFK = document.getElementById("tipoDocEdit").value;
     console.log(idCargoEmpleadoFk);
-    const empleadoDtoActualizado = {
+     const selectDireccion = document.getElementById("selectDireccionEdit");
+    if (selectDireccion.value == "0") {
+      alert("Debe seleccionar una Direccion");
+      return;
+    } else if (selectDireccion.value == "1") {
+      const empleadoDtoActualizado = {
       id: empleadoID,
       nombre: nombre,
       apellido: apellido,
@@ -245,7 +306,29 @@ document
     };
     console.log(empleadoDtoActualizado);
     await modificarEmpleado(empleadoDtoActualizado, empleadoID);
-    window.location.reload();
+      window.location.reload();
+    } else {
+      const empleadoDtoActualizado = {
+        id: empleadoID,
+        nombre: nombre,
+        apellido: apellido,
+        cedula: cedula,
+        telefono: telefono,
+        direccion: {
+          tipoVia: direccionTipoVia,
+          calle: direccionCarrera,
+          carrera: direccionCalle,
+          numero: direccionNumero,
+          idCiudadFk: direccionIdCiudadFk,
+        },
+        idCargoEmpleadoFk: idCargoEmpleadoFk,
+        idTipoDocumentoFK: idTipoDocumentoFK,
+      };
+      console.log(empleadoDtoActualizado);
+      await modificarEmpleado(empleadoDtoActualizado, empleadoID);
+      window.location.reload();
+    }
+    
   });
 
 function buscarEmpleado() {

@@ -156,3 +156,11 @@ body{
     color: rgba(156, 163, 175, 1);
   }
   
+#google{
+  width: 50px;
+}
+
+#auth0{
+  margin-left: 20px;
+  width: 150px;
+}

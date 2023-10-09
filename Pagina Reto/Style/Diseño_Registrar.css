@@ -178,3 +178,12 @@ input::-webkit-inner-spin-button{
   .cell::-webkit-inner-spin-button{
     display: none;
   }
+
+  #google{
+    width: 50px;
+  }
+  
+  #auth0{
+    margin-left: 20px;
+    width: 150px;
+  }
